@@ -33,6 +33,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.kayıtlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +50,8 @@
             // 
             // ayarlarToolStripMenuItem
             // 
+            this.ayarlarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kayıtlarToolStripMenuItem});
             this.ayarlarToolStripMenuItem.Name = "ayarlarToolStripMenuItem";
             this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.ayarlarToolStripMenuItem.Text = "Ayarlar";
@@ -79,10 +82,16 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1230, 452);
+            this.tabPage2.Size = new System.Drawing.Size(891, 452);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Adisyon";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // kayıtlarToolStripMenuItem
+            // 
+            this.kayıtlarToolStripMenuItem.Name = "kayıtlarToolStripMenuItem";
+            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kayıtlarToolStripMenuItem.Text = "Kayıtlar";
             // 
             // MainForm
             // 
@@ -110,5 +119,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ToolStripMenuItem kayıtlarToolStripMenuItem;
     }
 }
