@@ -5,19 +5,20 @@ using System.Text;
 
 namespace Restaurant.DataClass
 {
-    [Serializable]
-    public class Table : DataAccess
+    public class ProductGroup : DataAccess
     {
-        public Table()
-        {
+        #region Properties
 
-        }
         public int Id { get; set; }
-        public string Name { get; set; }
-        public bool Active { get; set; }
+
+
+        #endregion
+
+        #region Methods
+        
+        #endregion
 
     }
-
     public partial class DataAccessLayer
     {
 

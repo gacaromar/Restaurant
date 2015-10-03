@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.1.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,8 +46,17 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UtilityLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\UtilityLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataClass\Chelner.cs" />
+    <Compile Include="DataClass\DataLayer\DataAccess.cs" />
+    <Compile Include="DataClass\DataLayer\DataAccessLayer.cs" />
+    <Compile Include="DataClass\DataLayer\SpNameCollection.cs" />
+    <Compile Include="DataClass\ProductGroup.cs" />
     <Compile Include="DataClass\Table.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -124,6 +137,8 @@
     <Content Include="Bilgiler\12081556_10206386218866878_968718376_n.jpg" />
     <Content Include="Bilgiler\12084018_10206386218746875_316306989_n.jpg" />
     <Content Include="Bilgiler\12087374_10206386219106884_1942135769_n.jpg" />
+    <Content Include="DLL\MySql.Data.dll" />
+    <Content Include="DLL\UtilityLibrary.dll" />
     <Content Include="Images\ActiveTable.png" />
     <Content Include="Images\PassiveTable.png" />
   </ItemGroup>

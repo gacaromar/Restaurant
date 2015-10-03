@@ -456,7 +456,7 @@
             this.ClientSize = new System.Drawing.Size(878, 408);
             this.Controls.Add(this.tb1);
             this.Name.Name = "CreateForm";
-            this.Text = "CreateForm";
+            this.Text = "Kayıt Formu";
             this.tb1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
