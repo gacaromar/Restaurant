@@ -17,14 +17,18 @@ namespace Restaurant.Forms.UserControl
             InitializeComponent();
         }
 
-        public bool AddTable(List<Table> pSource)
+        public bool AddTable(List<Table> pSource, EventHandler tblClick)
         {
             int row = -1;
             for (int i = 0, j = 0; i < pSource.Count; i++, j++)
             {
                 var tbl = new ucTable();
+                tbl.TableActive = pSource[i].Active;
+                tbl.TableID = pSource[i].Id;
+                tbl.TableName = pSource[i].Name;
                 tbl.lblTableName.Text = pSource[i].Name;
                 tbl.pbPicture.Image = pSource[i].Active ? Properties.Resources.ActiveTable : Properties.Resources.PassiveTable;
+                tbl.pbPicture.Click += tblClick;
                 if (i % 10 == 0)
                 {
                     j = 0; row++;

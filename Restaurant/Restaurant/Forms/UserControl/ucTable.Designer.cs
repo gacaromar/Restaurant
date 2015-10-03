@@ -58,8 +58,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblTableName);
             this.Controls.Add(this.pbPicture);
+            this.Controls.Add(this.lblTableName);
             this.Name = "ucTable";
             this.Size = new System.Drawing.Size(94, 122);
             ((System.ComponentModel.ISupportInitialize)(this.pbPicture)).EndInit();
