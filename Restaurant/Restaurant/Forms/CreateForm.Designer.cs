@@ -32,52 +32,52 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtTable = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSaveTable = new System.Windows.Forms.Button();
             this.tbTableName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dtProductGroup = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnSaveProductGroup = new System.Windows.Forms.Button();
             this.tbProductGroup = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dtProduct = new System.Windows.Forms.DataGridView();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tbProductName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbProductGroup = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CurrencyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbProductGroup = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbProductName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dtChelner = new System.Windows.Forms.DataGridView();
+            this.ChelnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ChelnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductGroup)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProduct)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
@@ -124,23 +124,13 @@
             this.dtTable.AllowUserToAddRows = false;
             this.dtTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
+            this.TableName,
             this.Durum});
             this.dtTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtTable.Location = new System.Drawing.Point(3, 16);
             this.dtTable.Name = "dtTable";
             this.dtTable.Size = new System.Drawing.Size(858, 239);
             this.dtTable.TabIndex = 0;
-            // 
-            // Name
-            // 
-            this.Name.HeaderText = "Masa Adı";
-            this.Name.Name = "Name";
-            // 
-            // Durum
-            // 
-            this.Durum.HeaderText = "Active";
-            this.Durum.Name = "Durum";
             // 
             // groupBox1
             // 
@@ -192,30 +182,6 @@
             this.tabPage2.Text = "Ürün Grubu Ekle";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.dtProduct);
-            this.tabPage3.Controls.Add(this.groupBox4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(870, 382);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Ürün Ekle";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dtChelner);
-            this.tabPage4.Controls.Add(this.groupBox5);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(870, 382);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Garson Ekle";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
             // dtProductGroup
             // 
             this.dtProductGroup.AllowUserToAddRows = false;
@@ -227,6 +193,14 @@
             this.dtProductGroup.Name = "dtProductGroup";
             this.dtProductGroup.Size = new System.Drawing.Size(864, 258);
             this.dtProductGroup.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.FillWeight = 300F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Ürün Grubu Adı";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 300;
             // 
             // groupBox3
             // 
@@ -266,13 +240,17 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Ürün Grubu";
             // 
-            // dataGridViewTextBoxColumn1
+            // tabPage3
             // 
-            this.dataGridViewTextBoxColumn1.FillWeight = 300F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Ürün Grubu Adı";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 300;
+            this.tabPage3.Controls.Add(this.dtProduct);
+            this.tabPage3.Controls.Add(this.groupBox4);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(870, 382);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Ürün Ekle";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dtProduct
             // 
@@ -288,65 +266,6 @@
             this.dtProduct.Name = "dtProduct";
             this.dtProduct.Size = new System.Drawing.Size(864, 239);
             this.dtProduct.TabIndex = 3;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.comboBox1);
-            this.groupBox4.Controls.Add(this.cmbProductGroup);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.tbProductName);
-            this.groupBox4.Controls.Add(this.label4);
-            this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Location = new System.Drawing.Point(3, 3);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(864, 137);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Ürün Ekle";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(643, 108);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Kaydet";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // tbProductName
-            // 
-            this.tbProductName.Location = new System.Drawing.Point(127, 70);
-            this.tbProductName.Name = "tbProductName";
-            this.tbProductName.Size = new System.Drawing.Size(339, 20);
-            this.tbProductName.TabIndex = 1;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Ürün Adı";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 32);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Ürün Grubu";
-            // 
-            // cmbProductGroup
-            // 
-            this.cmbProductGroup.FormattingEnabled = true;
-            this.cmbProductGroup.Location = new System.Drawing.Point(127, 32);
-            this.cmbProductGroup.Name = "cmbProductGroup";
-            this.cmbProductGroup.Size = new System.Drawing.Size(339, 21);
-            this.cmbProductGroup.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -374,12 +293,22 @@
             this.CurrencyType.Name = "CurrencyType";
             this.CurrencyType.ReadOnly = true;
             // 
-            // textBox1
+            // groupBox4
             // 
-            this.textBox1.Location = new System.Drawing.Point(483, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 20);
-            this.textBox1.TabIndex = 1;
+            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.cmbProductGroup);
+            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.tbProductName);
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox4.Location = new System.Drawing.Point(3, 3);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(864, 137);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Ürün Ekle";
             // 
             // comboBox1
             // 
@@ -390,6 +319,67 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(235, 21);
             this.comboBox1.TabIndex = 3;
+            // 
+            // cmbProductGroup
+            // 
+            this.cmbProductGroup.FormattingEnabled = true;
+            this.cmbProductGroup.Location = new System.Drawing.Point(127, 32);
+            this.cmbProductGroup.Name = "cmbProductGroup";
+            this.cmbProductGroup.Size = new System.Drawing.Size(339, 21);
+            this.cmbProductGroup.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(643, 108);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Kaydet";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(483, 33);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(235, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // tbProductName
+            // 
+            this.tbProductName.Location = new System.Drawing.Point(127, 70);
+            this.tbProductName.Name = "tbProductName";
+            this.tbProductName.Size = new System.Drawing.Size(339, 20);
+            this.tbProductName.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Ürün Grubu";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Ürün Adı";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.dtChelner);
+            this.tabPage4.Controls.Add(this.groupBox5);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(870, 382);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Garson Ekle";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // dtChelner
             // 
@@ -402,6 +392,14 @@
             this.dtChelner.Name = "dtChelner";
             this.dtChelner.Size = new System.Drawing.Size(864, 258);
             this.dtChelner.TabIndex = 3;
+            // 
+            // ChelnerName
+            // 
+            this.ChelnerName.FillWeight = 300F;
+            this.ChelnerName.HeaderText = "Garson Adı";
+            this.ChelnerName.Name = "ChelnerName";
+            this.ChelnerName.ReadOnly = true;
+            this.ChelnerName.Width = 300;
             // 
             // groupBox5
             // 
@@ -441,13 +439,15 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
             // 
-            // ChelnerName
+            // TableName
             // 
-            this.ChelnerName.FillWeight = 300F;
-            this.ChelnerName.HeaderText = "Garson Adı";
-            this.ChelnerName.Name = "ChelnerName";
-            this.ChelnerName.ReadOnly = true;
-            this.ChelnerName.Width = 300;
+            this.TableName.HeaderText = "Masa Adı";
+            this.TableName.Name = "TableName";
+            // 
+            // Durum
+            // 
+            this.Durum.HeaderText = "Active";
+            this.Durum.Name = "Durum";
             // 
             // CreateForm
             // 
@@ -455,8 +455,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 408);
             this.Controls.Add(this.tb1);
-            this.Name.Name = "CreateForm";
+            this.Name = "CreateForm";
             this.Text = "Kayıt Formu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tb1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -464,14 +465,14 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProductGroup)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtProduct)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -492,8 +493,6 @@
         private System.Windows.Forms.TextBox tbTableName;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dtTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewImageColumn Durum;
         private System.Windows.Forms.DataGridView dtProductGroup;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSaveProductGroup;
@@ -519,5 +518,7 @@
         private System.Windows.Forms.Button btnSaveChelner;
         private System.Windows.Forms.TextBox tbChelnerName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
+        private System.Windows.Forms.DataGridViewImageColumn Durum;
     }
 }
