@@ -52,6 +52,7 @@
             this.lblTableName.Size = new System.Drawing.Size(88, 30);
             this.lblTableName.TabIndex = 2;
             this.lblTableName.Text = "label1";
+            this.lblTableName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ucTable
             // 

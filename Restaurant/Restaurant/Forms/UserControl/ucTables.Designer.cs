@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Name = "ucTables";
-            this.Size = new System.Drawing.Size(550, 480);
+            this.Size = new System.Drawing.Size(1204, 480);
             this.ResumeLayout(false);
 
         }

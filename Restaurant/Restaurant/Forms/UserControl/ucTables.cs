@@ -19,15 +19,19 @@ namespace Restaurant.Forms.UserControl
 
         public bool AddTable(List<Table> pSource)
         {
-            for (int i = 0; i < pSource.Count; i++)
+            int row = -1;
+            for (int i = 0, j = 0; i < pSource.Count; i++, j++)
             {
                 var tbl = new ucTable();
                 tbl.lblTableName.Text = pSource[i].Name;
-                tbl.pbPicture.Image =
-                    Image.FromFile(pSource[i].Active ? "~/Images/ActiveTable.png" : "~/Images/PassiveTable.png");
-                tbl.Left = 10 + (94 * i);
-                if (i % 5 == 0)
-                    tbl.Height = 122 * ((i + 1) * (int)(i / 5));
+                tbl.pbPicture.Image = pSource[i].Active ? Properties.Resources.ActiveTable : Properties.Resources.PassiveTable;
+                if (i % 10 == 0)
+                {
+                    j = 0; row++;
+                }
+                tbl.Left = 10 + (120 * j);
+                tbl.Top = 30 + 122 * row;
+                this.Controls.Add(tbl);
             }
             return true;
         }
