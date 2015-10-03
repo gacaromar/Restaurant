@@ -455,7 +455,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 408);
             this.Controls.Add(this.tb1);
-            this.Name = "CreateForm";
+            this.Name.Name = "CreateForm";
             this.Text = "CreateForm";
             this.tb1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
