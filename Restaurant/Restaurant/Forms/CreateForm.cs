@@ -23,10 +23,13 @@ namespace Restaurant.Forms
             {
                 Table table = new Table()
                 {
-                    Name = tbTableName.Text.Replace(" ", "")
+                    TableName = tbTableName.Text.Replace(" ", "")
                 };
-                table.Save();
+               bool result = table.Save();
+               if (result)
                 MessageBox.Show("Masa ekleme işleminiz gerçekleştirilmiştir.", "Bilgilendirme",MessageBoxButtons.OK,MessageBoxIcon.Information);
+               else
+                   MessageBox.Show("İşlemde hata gerçekleşti.", "Dikkat", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LoadTables();
             }
             else

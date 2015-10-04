@@ -16,98 +16,7 @@ namespace Restaurant.Forms
         public MainForm()
         {
             InitializeComponent();
-            var tbl = new ucTables();
-            tbl.Dock = DockStyle.Fill;
-            var vList = new List<Table>();
-            vList.Add(new Table
-            {
-                Active = true,
-                Name = "1",
-                Id = 1
-            });
-            vList.Add(new Table
-            {
-                Active = false,
-                Name = "2",
-                Id = 2
-            }); vList.Add(new Table
-             {
-                 Active = true,
-                 Name = "1",
-                 Id = 1
-             });
-            vList.Add(new Table
-            {
-                Active = false,
-                Name = "2",
-                Id = 2
-            }); vList.Add(new Table
-             {
-                 Active = true,
-                 Name = "1",
-                 Id = 1
-             });
-            vList.Add(new Table
-            {
-                Active = false,
-                Name = "2",
-                Id = 2
-            }); vList.Add(new Table
-             {
-                 Active = true,
-                 Name = "1",
-                 Id = 1
-             });
-            vList.Add(new Table
-            {
-                Active = false,
-                Name = "2",
-                Id = 2
-            });
-            vList.Add(new Table
-            {
-                Active = true,
-                Name = "3",
-                Id = 3
-            });
-            vList.Add(new Table
-            {
-                Active = true,
-                Name = "1",
-                Id = 1
-            });
-            vList.Add(new Table
-            {
-                Active = false,
-                Name = "2",
-                Id = 2
-            });
-            vList.Add(new Table
-            {
-                Active = true,
-                Name = "3",
-                Id = 3
-            });
-            vList.Add(new Table
-            {
-                Active = true,
-                Name = "1",
-                Id = 1
-            });
-            vList.Add(new Table
-            {
-                Active = false,
-                Name = "2",
-                Id = 2
-            });
-            vList.Add(new Table
-            {
-                Active = true,
-                Name = "3",
-                Id = 3
-            });
-            tbl.AddTable(vList, tbl_Click);
-            tabPage1.Controls.Add(tbl);
+           
         }
 
         void tbl_Click(object sender, EventArgs e)
@@ -121,7 +30,7 @@ namespace Restaurant.Forms
             var vTable = new Table
             {
                 Active = vucTable.TableActive,
-                Name = vucTable.TableName,
+                TableName = vucTable.TableName,
                 Id = vucTable.TableID
             };
             SetAdisyon(vTable);

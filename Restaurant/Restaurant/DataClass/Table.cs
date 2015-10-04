@@ -17,7 +17,7 @@ namespace Restaurant.DataClass
         }
         #region Properties
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string TableName { get; set; }
         public bool Active { get; set; }
         public DateTime RecordDate { get; set; }
         #endregion
@@ -34,7 +34,7 @@ namespace Restaurant.DataClass
                 Table item = new Table()
                 {
                     Id = row.Field<int>("Id"),
-                    Name = row.Field<string>("Name"),
+                    TableName = row.Field<string>("Name"),
                     Active = row.Field<bool>("Active"),
                     RecordDate = row.Field<DateTime>("RecordDate")
                     
@@ -45,9 +45,9 @@ namespace Restaurant.DataClass
             return list;
         }
 
-        public void Save()
+        public bool Save()
         {
-            DAL.InsertTable(Name);
+          return  DAL.InsertTable(TableName);
         }
 
         #endregion
@@ -72,16 +72,17 @@ public partial class DataAccessLayer
         }
     }
 
-    public void InsertTable(string pName)
+    public bool InsertTable(string pName)
     {
         try
         {
             UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.InsertTable,
                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pName));
+            return true;
         }
         catch (Exception ex)
         {
-
+            return false;
         }
     }
 

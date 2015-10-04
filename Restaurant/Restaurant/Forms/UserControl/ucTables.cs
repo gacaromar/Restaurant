@@ -19,8 +19,8 @@ namespace Restaurant.Forms.UserControl
                 var tbl = new ucTable();
                 tbl.TableActive = pSource[i].Active;
                 tbl.TableID = pSource[i].Id;
-                tbl.TableName = pSource[i].Name;
-                tbl.lblTableName.Text = pSource[i].Name;
+                tbl.TableName = pSource[i].TableName;
+                tbl.lblTableName.Text = pSource[i].TableName;
                 tbl.pbPicture.Image = pSource[i].Active ? Properties.Resources.ActiveTable : Properties.Resources.PassiveTable;
                 tbl.pbPicture.Click += tblClick;
                 if (i % 10 == 0)
