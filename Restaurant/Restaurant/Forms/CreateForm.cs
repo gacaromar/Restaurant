@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Restaurant.DataClass;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,12 +21,25 @@ namespace Restaurant.Forms
         {
             if (tbTableName.Text.Replace(" ","") !=string.Empty)
             {
-                
+                Table table = new Table()
+                {
+                    Name = tbTableName.Text.Replace(" ", "")
+                };
+                table.Save();
+                MessageBox.Show("Masa ekleme işleminiz gerçekleştirilmiştir.", "Bilgilendirme",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                LoadTables();
             }
             else
             {
-                MessageBox.Show("Lütfen masa adı giriniz","Dikkat");
+                MessageBox.Show("Lütfen masa adı giriniz", "Dikkat", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void LoadTables()
+        {
+            List<Table> list = Table.GetAllTables();
+            dtTable.DataSource = list;
+            
         }
     }
 }

@@ -18,14 +18,36 @@ namespace Restaurant.DataClass
         #region Properties
         public int Id { get; set; }
         public string Name { get; set; }
-        public bool Active { get; set; } 
+        public bool Active { get; set; }
+        public DateTime RecordDate { get; set; }
         #endregion
 
         #region Methods
 
+        public static List<Table> GetAllTables()
+        {
+            List<Table> list = new List<Table>();
+            DataTable dt = DAL.GetAllTables();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Table item = new Table()
+                {
+                    Id = row.Field<int>("Id"),
+                    Name = row.Field<string>("Name"),
+                    Active = row.Field<bool>("Active"),
+                    RecordDate = row.Field<DateTime>("RecordDate")
+                    
+                };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
         public void Save()
         {
-            DAL.InsertTable();
+            DAL.InsertTable(Name);
         }
 
         #endregion
@@ -37,26 +59,25 @@ namespace Restaurant.DataClass
 
 public partial class DataAccessLayer
 {
-    //public DataTable GetOrderListByCustomerId(int pCustomerId)
-    //{
-    //    try
-    //    {
-    //        return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetOrderListByCustomerId,
-    //            MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pCustomerId));
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        Logger.LogGeneral(LogGeneralType.Error, ((MethodInfo)MethodBase.GetCurrentMethod()).Name, ex);
-    //        return new DataTable();
-    //    }
-    //}
+    public DataTable GetAllTables()
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetAllTables,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters()));
+        }
+        catch (Exception ex)
+        {
+            
+        }
+    }
 
-    public void InsertTable()
+    public void InsertTable(string pName)
     {
         try
         {
             UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.InsertTable,
-                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters()));
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pName));
         }
         catch (Exception ex)
         {
