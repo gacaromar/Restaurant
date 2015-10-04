@@ -68,7 +68,7 @@ public partial class DataAccessLayer
         }
         catch (Exception ex)
         {
-            
+            return null;
         }
     }
 
