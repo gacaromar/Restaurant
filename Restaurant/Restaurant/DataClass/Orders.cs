@@ -17,6 +17,7 @@ namespace Restaurant.DataClass
         public int Quantity { get; set; }
         public double Total { get; set; }
         public DateTime RecordDate { get; set; }
+        public double Discount { get; set; }
         public int Status { get; set; }
         #endregion
         #region Methods
