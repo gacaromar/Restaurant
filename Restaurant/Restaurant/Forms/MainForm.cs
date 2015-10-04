@@ -16,7 +16,18 @@ namespace Restaurant.Forms
         public MainForm()
         {
             InitializeComponent();
-           
+
+            var tbl = new ucTables();
+            tbl.Dock = DockStyle.Fill;
+            var vList = new List<Table>();
+            vList.Add(new Table
+            {
+                Active = true,
+                TableName = "1",
+                Id = 1
+            });
+            tbl.AddTable(vList, tbl_Click);
+            tabPage1.Controls.Add(tbl);
         }
 
         void tbl_Click(object sender, EventArgs e)
@@ -39,8 +50,8 @@ namespace Restaurant.Forms
 
         private void SetAdisyon(Table vTable)
         {
-            var ucGroup = new ucProductGroups();
-            var vGroups = new ProductGroup();
+            var ucSlips = new ucSaleSlip();
+            tabPage2.Controls.Add(ucSlips);
             tabControl1.SelectedIndex = 1;
         }
 

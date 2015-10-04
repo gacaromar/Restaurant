@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridView dtTable1;
             this.tb1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dtTable = new System.Windows.Forms.DataGridView();
-            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSaveTable = new System.Windows.Forms.Button();
             this.tbTableName = new System.Windows.Forms.TextBox();
@@ -66,10 +64,15 @@
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dtTable = new System.Windows.Forms.DataGridView();
+            this.TableName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Active = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            dtTable1 = new System.Windows.Forms.DataGridView();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProductGroup)).BeginInit();
@@ -80,6 +83,8 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(dtTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
             this.SuspendLayout();
             // 
             // tb1
@@ -111,6 +116,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dtTable);
+            this.groupBox2.Controls.Add(dtTable1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 121);
             this.groupBox2.Name = "groupBox2";
@@ -118,29 +124,6 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Masalar";
-            // 
-            // dtTable
-            // 
-            this.dtTable.AllowUserToAddRows = false;
-            this.dtTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TableName,
-            this.Durum});
-            this.dtTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtTable.Location = new System.Drawing.Point(3, 16);
-            this.dtTable.Name = "dtTable";
-            this.dtTable.Size = new System.Drawing.Size(858, 239);
-            this.dtTable.TabIndex = 0;
-            // 
-            // TableName
-            // 
-            this.TableName.HeaderText = "Masa Adı";
-            this.TableName.Name = "TableName";
-            // 
-            // Durum
-            // 
-            this.Durum.HeaderText = "Active";
-            this.Durum.Name = "Durum";
             // 
             // groupBox1
             // 
@@ -450,6 +433,55 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
             // 
+            // dtTable1
+            // 
+            dtTable1.AllowUserToAddRows = false;
+            dtTable1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtTable1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TableName,
+            this.Durum});
+            dtTable1.Dock = System.Windows.Forms.DockStyle.Fill;
+            dtTable1.Location = new System.Drawing.Point(3, 16);
+            dtTable1.Name = "dtTable1";
+            dtTable1.Size = new System.Drawing.Size(858, 239);
+            dtTable1.TabIndex = 1;
+            // 
+            // TableName
+            // 
+            this.TableName.HeaderText = "Masa Adı";
+            this.TableName.Name = "TableName";
+            // 
+            // Durum
+            // 
+            this.Durum.HeaderText = "Active";
+            this.Durum.Name = "Durum";
+            // 
+            // dtTable
+            // 
+            this.dtTable.AllowUserToAddRows = false;
+            this.dtTable.AllowUserToDeleteRows = false;
+            this.dtTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TableName1,
+            this.Active});
+            this.dtTable.Location = new System.Drawing.Point(283, 55);
+            this.dtTable.Name = "dtTable";
+            this.dtTable.ReadOnly = true;
+            this.dtTable.Size = new System.Drawing.Size(240, 150);
+            this.dtTable.TabIndex = 2;
+            // 
+            // TableName1
+            // 
+            this.TableName1.HeaderText = "Masa Adı";
+            this.TableName1.Name = "TableName1";
+            this.TableName1.ReadOnly = true;
+            // 
+            // Active
+            // 
+            this.Active.HeaderText = "Column1";
+            this.Active.Name = "Active";
+            this.Active.ReadOnly = true;
+            // 
             // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,7 +494,6 @@
             this.tb1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -477,6 +508,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(dtTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -493,7 +526,6 @@
         private System.Windows.Forms.Button btnSaveTable;
         private System.Windows.Forms.TextBox tbTableName;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dtTable;
         private System.Windows.Forms.DataGridView dtProductGroup;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnSaveProductGroup;
@@ -521,5 +553,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
         private System.Windows.Forms.DataGridViewImageColumn Durum;
+        private System.Windows.Forms.DataGridView dtTable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TableName1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Active;
     }
 }

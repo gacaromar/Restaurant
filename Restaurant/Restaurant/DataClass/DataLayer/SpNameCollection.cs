@@ -3,7 +3,7 @@ public static class SpNameCollection
 {
     #region Table
 		
-    public static string InsertTable = "Insert_tables";
+    public static string InsertTable = "Insert_Tables";
     public static string GetAllTables = "GetList_AllTables";
  
 	#endregion

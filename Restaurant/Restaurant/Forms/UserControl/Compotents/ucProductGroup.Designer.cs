@@ -33,9 +33,9 @@
             // 
             // btnGroupName
             // 
-            this.btnGroupName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGroupName.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.btnGroupName.Location = new System.Drawing.Point(0, 0);
-            this.btnGroupName.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGroupName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnGroupName.Name = "btnGroupName";
             this.btnGroupName.Size = new System.Drawing.Size(125, 35);
             this.btnGroupName.TabIndex = 0;
@@ -44,12 +44,11 @@
             // 
             // ucProductGroup
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnGroupName);
-            this.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MaximumSize = new System.Drawing.Size(125, 35);
-            this.MinimumSize = new System.Drawing.Size(125, 35);
+            this.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ucProductGroup";
             this.Size = new System.Drawing.Size(125, 35);
             this.ResumeLayout(false);

@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using Restaurant.DataClass;
 using Restaurant.Forms.UserControl.Compotents;
 
@@ -27,11 +21,13 @@ namespace Restaurant.Forms.UserControl
                 tbl.GroupID = pSource[i].Id;
                 tbl.GroupName = pSource[i].ProductGroupName;
                 tbl.btnGroupName.Click += btnProductGroupClick;
+                tbl.Width = 85;
+                tbl.Height = 35;
                 if (i % 5 == 0)
                 {
                     j = 0; row++;
                 }
-                tbl.Left = 5 + (125 * j);
+                tbl.Left = 5 + (85 * j);
                 tbl.Top = 5 + 35 * row;
                 this.Controls.Add(tbl);
             }
