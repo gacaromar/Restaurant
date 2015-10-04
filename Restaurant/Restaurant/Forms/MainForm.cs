@@ -130,7 +130,15 @@ namespace Restaurant.Forms
 
         private void SetAdisyon(Table vTable)
         {
-            throw new NotImplementedException();
+            var ucGroup = new ucProductGroups();
+            var vGroups = new ProductGroup();
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void kayıtlarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateForm frmCreateForm = new CreateForm();
+            frmCreateForm.ShowDialog();
         }
     }
 }

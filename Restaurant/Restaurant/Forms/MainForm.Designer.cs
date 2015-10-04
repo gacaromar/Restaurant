@@ -30,10 +30,10 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ayarlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kayıtlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.kayıtlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +55,13 @@
             this.ayarlarToolStripMenuItem.Name = "ayarlarToolStripMenuItem";
             this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.ayarlarToolStripMenuItem.Text = "Ayarlar";
+            // 
+            // kayıtlarToolStripMenuItem
+            // 
+            this.kayıtlarToolStripMenuItem.Name = "kayıtlarToolStripMenuItem";
+            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kayıtlarToolStripMenuItem.Text = "Kayıtlar";
+            this.kayıtlarToolStripMenuItem.Click += new System.EventHandler(this.kayıtlarToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -86,12 +93,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Adisyon";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // kayıtlarToolStripMenuItem
-            // 
-            this.kayıtlarToolStripMenuItem.Name = "kayıtlarToolStripMenuItem";
-            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kayıtlarToolStripMenuItem.Text = "Kayıtlar";
             // 
             // MainForm
             // 
