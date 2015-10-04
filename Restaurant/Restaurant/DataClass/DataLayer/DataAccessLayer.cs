@@ -11,12 +11,8 @@ public partial class DataAccessLayer
         {
             string cs = string.Empty;
             MySqlConnectionStringBuilder mcsb = new MySqlConnectionStringBuilder();
-            //mcsb.Database = GlobalSettings.Database;
-            //mcsb.UserID = GlobalSettings.UserName;
-            //mcsb.Password = GlobalSettings.Password;
-            //mcsb.CharacterSet = GlobalSettings.DatabaseEncoding;
-            //mcsb.Server = GlobalSettings.Ip;
-            //mcsb.Port = GlobalSettings.Port;
+            mcsb.ConnectionString =
+    System.Configuration.ConfigurationManager.ConnectionStrings["RestaurantConstr"].ConnectionString;
             mcsb.ConnectionTimeout = 120;
             cs = mcsb.ToString();
             
