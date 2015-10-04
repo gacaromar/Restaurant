@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using Utilities;
 
 namespace Restaurant.DataClass
 {
@@ -21,12 +24,50 @@ namespace Restaurant.DataClass
         #endregion
 
         #region Methods
-        
+
+        public static List<Product> GetProductByProductGroupId(int productGroupId)
+        {
+            List<Product> list = new List<Product>();
+            DataTable dt = DAL.GetProductByProductGroupId(productGroupId);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Product item = new Product()
+                {
+                    Id = row.Field<int>("Id"),
+                    ProductGroup = new ProductGroup()
+                    {
+                        Id = row.Field<int>("ProductGroupId"),
+
+                    },
+                    SalesPrice = row.Field<double>("SalesPrice"),
+                    CurrencyType = row.Field<string>("CurrencyType"),
+                    ProductName = row.Field<string>("Name"),
+                    RecordDate = row.Field<DateTime>("RecordDate")
+
+                };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
         #endregion
     }
   
 }
 public partial class DataAccessLayer
 {
-
+    public DataTable GetProductByProductGroupId(int pProductGroupId)
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetProductByProductGroupId,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pProductGroupId));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
 }

@@ -13,4 +13,10 @@ public static class SpNameCollection
     public static string GetAllProductGroups = "GetList_AllProductGroups";
 
     #endregion
+
+    #region Product
+
+    public static string GetProductByProductGroupId = "GetList_ProductByProductGroupId";
+
+    #endregion
 }

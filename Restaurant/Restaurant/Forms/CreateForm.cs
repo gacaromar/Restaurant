@@ -15,6 +15,7 @@ namespace Restaurant.Forms
         public CreateForm()
         {
             InitializeComponent();
+
         }
 
         private void btnSaveTable_Click(object sender, EventArgs e)
