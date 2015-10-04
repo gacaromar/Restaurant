@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridView dtTable1;
             this.tb1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -64,12 +63,8 @@
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.dtTables = new System.Windows.Forms.DataGridView();
             this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dtTable = new System.Windows.Forms.DataGridView();
-            this.TableName1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Active = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            dtTable1 = new System.Windows.Forms.DataGridView();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -83,8 +78,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(dtTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTables)).BeginInit();
             this.SuspendLayout();
             // 
             // tb1
@@ -115,8 +109,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dtTable);
-            this.groupBox2.Controls.Add(dtTable1);
+            this.groupBox2.Controls.Add(this.dtTables);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 121);
             this.groupBox2.Name = "groupBox2";
@@ -433,54 +426,28 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
             // 
-            // dtTable1
+            // dtTables
             // 
-            dtTable1.AllowUserToAddRows = false;
-            dtTable1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtTable1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TableName,
-            this.Durum});
-            dtTable1.Dock = System.Windows.Forms.DockStyle.Fill;
-            dtTable1.Location = new System.Drawing.Point(3, 16);
-            dtTable1.Name = "dtTable1";
-            dtTable1.Size = new System.Drawing.Size(858, 239);
-            dtTable1.TabIndex = 1;
+            this.dtTables.AllowUserToAddRows = false;
+            this.dtTables.AllowUserToOrderColumns = true;
+            this.dtTables.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.datagiridFalse;
+            this.dtTables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtTables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TableName});
+            this.dtTables.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "datagiridFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.dtTables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtTables.Location = new System.Drawing.Point(3, 16);
+            this.dtTables.Name = "dtTables";
+            this.dtTables.ReadOnly = true;
+            this.dtTables.Size = new System.Drawing.Size(858, 239);
+            this.dtTables.TabIndex = 0;
             // 
             // TableName
             // 
+            this.TableName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.TableName.HeaderText = "Masa Adı";
             this.TableName.Name = "TableName";
-            // 
-            // Durum
-            // 
-            this.Durum.HeaderText = "Active";
-            this.Durum.Name = "Durum";
-            // 
-            // dtTable
-            // 
-            this.dtTable.AllowUserToAddRows = false;
-            this.dtTable.AllowUserToDeleteRows = false;
-            this.dtTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TableName1,
-            this.Active});
-            this.dtTable.Location = new System.Drawing.Point(283, 55);
-            this.dtTable.Name = "dtTable";
-            this.dtTable.ReadOnly = true;
-            this.dtTable.Size = new System.Drawing.Size(240, 150);
-            this.dtTable.TabIndex = 2;
-            // 
-            // TableName1
-            // 
-            this.TableName1.HeaderText = "Masa Adı";
-            this.TableName1.Name = "TableName1";
-            this.TableName1.ReadOnly = true;
-            // 
-            // Active
-            // 
-            this.Active.HeaderText = "Column1";
-            this.Active.Name = "Active";
-            this.Active.ReadOnly = true;
+            this.TableName.ReadOnly = true;
             // 
             // CreateForm
             // 
@@ -508,8 +475,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(dtTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTables)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -551,10 +517,7 @@
         private System.Windows.Forms.Button btnSaveChelner;
         private System.Windows.Forms.TextBox tbChelnerName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dtTables;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
-        private System.Windows.Forms.DataGridViewImageColumn Durum;
-        private System.Windows.Forms.DataGridView dtTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableName1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Active;
     }
 }

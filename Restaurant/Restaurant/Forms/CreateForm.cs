@@ -10,7 +10,7 @@ namespace Restaurant.Forms
         public CreateForm()
         {
             InitializeComponent();
-
+            LoadTables();
         }
 
         private void btnSaveTable_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace Restaurant.Forms
         private void LoadTables()
         {
             List<Table> list = Table.GetAllTables();
-            dtTable.DataSource = list;
+            dtTables.DataSource =  list;
 
         }
     }
