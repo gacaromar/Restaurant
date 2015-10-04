@@ -80,11 +80,17 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserControl\ucProductGroup.cs">
+    <Compile Include="Forms\UserControl\Compotents\ucProductGroup.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UserControl\ucProductGroup.Designer.cs">
+    <Compile Include="Forms\UserControl\Compotents\ucProductGroup.Designer.cs">
       <DependentUpon>ucProductGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControl\ucProductGroups.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl\ucProductGroups.Designer.cs">
+      <DependentUpon>ucProductGroups.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserControl\ucSaleSlip.cs">
       <SubType>UserControl</SubType>
@@ -92,10 +98,10 @@
     <Compile Include="Forms\UserControl\ucSaleSlip.Designer.cs">
       <DependentUpon>ucSaleSlip.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserControl\ucTable.cs">
+    <Compile Include="Forms\UserControl\Compotents\ucTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\UserControl\ucTable.Designer.cs">
+    <Compile Include="Forms\UserControl\Compotents\ucTable.Designer.cs">
       <DependentUpon>ucTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserControl\ucTables.cs">
@@ -115,10 +121,16 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl\Compotents\ucProductGroup.resx">
+      <DependentUpon>ucProductGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl\ucProductGroups.resx">
+      <DependentUpon>ucProductGroups.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucSaleSlip.resx">
       <DependentUpon>ucSaleSlip.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\UserControl\ucTable.resx">
+    <EmbeddedResource Include="Forms\UserControl\Compotents\ucTable.resx">
       <DependentUpon>ucTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucTables.resx">

@@ -62,7 +62,7 @@
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Margin = new System.Windows.Forms.Padding(4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(313, 480);
+            this.splitter1.Size = new System.Drawing.Size(310, 480);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 

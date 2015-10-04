@@ -1,6 +1,6 @@
 ﻿namespace Restaurant.Forms.UserControl
 {
-    partial class ucProductGroup
+    partial class ucProductGroups
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,10 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ucProductGroups
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.Name = "ucProductGroups";
+            this.Size = new System.Drawing.Size(710, 90);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+
     }
 }
