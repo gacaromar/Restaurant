@@ -80,6 +80,12 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl\ucSaleSlip.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl\ucSaleSlip.Designer.cs">
+      <DependentUpon>ucSaleSlip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserControl\ucTable.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl\ucSaleSlip.resx">
+      <DependentUpon>ucSaleSlip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucTable.resx">
       <DependentUpon>ucTable.cs</DependentUpon>
