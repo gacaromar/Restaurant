@@ -52,7 +52,7 @@
             // 
             this.cmbTables.FormattingEnabled = true;
             this.cmbTables.Location = new System.Drawing.Point(4, 4);
-            this.cmbTables.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTables.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTables.Name = "cmbTables";
             this.cmbTables.Size = new System.Drawing.Size(160, 24);
             this.cmbTables.TabIndex = 0;
@@ -60,16 +60,16 @@
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitter1.Margin = new System.Windows.Forms.Padding(4);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(305, 480);
+            this.splitter1.Size = new System.Drawing.Size(313, 480);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
             // btnAddSaleser
             // 
             this.btnAddSaleser.Location = new System.Drawing.Point(172, 4);
-            this.btnAddSaleser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddSaleser.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddSaleser.Name = "btnAddSaleser";
             this.btnAddSaleser.Size = new System.Drawing.Size(133, 25);
             this.btnAddSaleser.TabIndex = 2;
@@ -209,7 +209,7 @@
             this.Controls.Add(this.cmbTables);
             this.Controls.Add(this.splitter1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSaleSlip";
             this.Size = new System.Drawing.Size(1024, 480);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
