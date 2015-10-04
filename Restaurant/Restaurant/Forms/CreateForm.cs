@@ -15,5 +15,17 @@ namespace Restaurant.Forms
         {
             InitializeComponent();
         }
+
+        private void btnSaveTable_Click(object sender, EventArgs e)
+        {
+            if (tbTableName.Text.Replace(" ","") !=string.Empty)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("Lütfen masa adı giriniz","Dikkat");
+            }
+        }
     }
 }

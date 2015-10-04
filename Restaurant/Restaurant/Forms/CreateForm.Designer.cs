@@ -32,6 +32,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtTable = new System.Windows.Forms.DataGridView();
+            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSaveTable = new System.Windows.Forms.Button();
             this.tbTableName = new System.Windows.Forms.TextBox();
@@ -64,8 +66,6 @@
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Durum = new System.Windows.Forms.DataGridViewImageColumn();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -132,6 +132,16 @@
             this.dtTable.Size = new System.Drawing.Size(858, 239);
             this.dtTable.TabIndex = 0;
             // 
+            // TableName
+            // 
+            this.TableName.HeaderText = "Masa Adı";
+            this.TableName.Name = "TableName";
+            // 
+            // Durum
+            // 
+            this.Durum.HeaderText = "Active";
+            this.Durum.Name = "Durum";
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.btnSaveTable);
@@ -153,6 +163,7 @@
             this.btnSaveTable.TabIndex = 2;
             this.btnSaveTable.Text = "Kaydet";
             this.btnSaveTable.UseVisualStyleBackColor = true;
+            this.btnSaveTable.Click += new System.EventHandler(this.btnSaveTable_Click);
             // 
             // tbTableName
             // 
@@ -438,16 +449,6 @@
             this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
-            // 
-            // TableName
-            // 
-            this.TableName.HeaderText = "Masa Adı";
-            this.TableName.Name = "TableName";
-            // 
-            // Durum
-            // 
-            this.Durum.HeaderText = "Active";
-            this.Durum.Name = "Durum";
             // 
             // CreateForm
             // 

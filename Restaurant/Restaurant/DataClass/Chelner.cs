@@ -21,8 +21,9 @@ namespace Restaurant.DataClass
         #endregion
 
     }
-    public partial class DataAccessLayer
-    {
+    
+}
+public partial class DataAccessLayer
+{
 
-    }
 }
