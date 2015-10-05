@@ -50,6 +50,16 @@ namespace Restaurant.DataClass
           return  DAL.InsertTable(TableName);
         }
 
+        public bool Update()
+        {
+            return DAL.UpdateTable(Id,TableName);
+        }
+
+        public bool Delete()
+        {
+            return DAL.DeleteTable(Id);
+        }
+
         #endregion
 
     }
@@ -71,6 +81,36 @@ public partial class DataAccessLayer
             return null;
         }
     }
+
+    public bool DeleteTable(int pId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.DeleteTable,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),pId));
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+
+    public bool UpdateTable(int pId, string pName)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateTable,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),pId, pName));
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
 
     public bool InsertTable(string pName)
     {
