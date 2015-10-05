@@ -63,8 +63,9 @@
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dtTables = new System.Windows.Forms.DataGridView();
+            this.dtTable = new System.Windows.Forms.DataGridView();
             this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Durum = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,7 +79,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtTables)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).BeginInit();
             this.SuspendLayout();
             // 
             // tb1
@@ -109,7 +110,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dtTables);
+            this.groupBox2.Controls.Add(this.dtTable);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 121);
             this.groupBox2.Name = "groupBox2";
@@ -172,9 +173,11 @@
             // dtProductGroup
             // 
             this.dtProductGroup.AllowUserToAddRows = false;
+            this.dtProductGroup.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.dgvAutoGeneretaFalse;
             this.dtProductGroup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtProductGroup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
+            this.dtProductGroup.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "dgvAutoGeneretaFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtProductGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtProductGroup.Location = new System.Drawing.Point(3, 121);
             this.dtProductGroup.Name = "dtProductGroup";
@@ -426,28 +429,33 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
             // 
-            // dtTables
+            // dtTable
             // 
-            this.dtTables.AllowUserToAddRows = false;
-            this.dtTables.AllowUserToOrderColumns = true;
-            this.dtTables.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.datagiridFalse;
-            this.dtTables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtTables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.TableName});
-            this.dtTables.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "datagiridFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dtTables.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtTables.Location = new System.Drawing.Point(3, 16);
-            this.dtTables.Name = "dtTables";
-            this.dtTables.ReadOnly = true;
-            this.dtTables.Size = new System.Drawing.Size(858, 239);
-            this.dtTables.TabIndex = 0;
+            this.dtTable.AllowUserToAddRows = false;
+            this.dtTable.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.dgvAutoGeneretaFalse;
+            this.dtTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TableName,
+            this.Durum});
+            this.dtTable.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "dgvAutoGeneretaFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.dtTable.Location = new System.Drawing.Point(3, 19);
+            this.dtTable.Name = "dtTable";
+            this.dtTable.Size = new System.Drawing.Size(858, 239);
+            this.dtTable.TabIndex = 0;
             // 
             // TableName
             // 
-            this.TableName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TableName.Frozen = true;
             this.TableName.HeaderText = "Masa Adı";
             this.TableName.Name = "TableName";
             this.TableName.ReadOnly = true;
+            // 
+            // Durum
+            // 
+            this.Durum.HeaderText = "Aktif";
+            this.Durum.Name = "Durum";
+            this.Durum.ReadOnly = true;
+            this.Durum.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // CreateForm
             // 
@@ -475,7 +483,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtTables)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -517,7 +525,8 @@
         private System.Windows.Forms.Button btnSaveChelner;
         private System.Windows.Forms.TextBox tbChelnerName;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dtTables;
+        private System.Windows.Forms.DataGridView dtTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Durum;
     }
 }

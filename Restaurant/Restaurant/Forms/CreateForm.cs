@@ -37,7 +37,7 @@ namespace Restaurant.Forms
         private void LoadTables()
         {
             List<Table> list = Table.GetAllTables();
-            dtTables.DataSource =  list;
+            dtTable.DataSource =  list;
 
         }
     }

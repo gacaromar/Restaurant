@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Restaurant.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="datagiridFalse" Type="System.Boolean" Scope="User">
+    <Setting Name="dgvAutoGeneretaFalse" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
