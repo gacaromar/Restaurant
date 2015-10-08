@@ -38,7 +38,22 @@ namespace Restaurant.DataClass
 
             return list;
         }
-        
+
+        public bool Save()
+        {
+            return DAL.InsertProductGroup(ProductGroupName);
+        }
+
+        public bool Update()
+        {
+            return DAL.UpdateProductGroup(Id, ProductGroupName);
+        }
+
+        public bool Delete()
+        {
+            return DAL.DeleteProductGroup(Id);
+        }
+
         
         #endregion
 
@@ -47,6 +62,50 @@ namespace Restaurant.DataClass
 }
 public partial class DataAccessLayer
 {
+    public bool DeleteProductGroup(int pId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.DeleteProductGroup,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId));
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+
+    public bool UpdateProductGroup(int pId, string pName)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateProductGroup,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId, pName));
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+
+    public bool InsertProductGroup(string pName)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.InsertProductGroup,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pName));
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
     public DataTable GetAllProductGroups()
     {
         try

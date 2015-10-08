@@ -14,14 +14,19 @@ public static class SpNameCollection
     #region ProductGroup
 
     public static string GetAllProductGroups = "GetList_AllProductGroups";
+    public static string InsertProductGroup = "Insert_ProductGroup";
+    public static string UpdateProductGroup = "Update_ProductGroup";
+    public static string DeleteProductGroup = "Delete_ProductGroup";
 
     #endregion
 
     #region Product
 
     public static string GetProductByProductGroupId = "GetList_ProductByProductGroupId";
+    public static string GetProductByAll = "GetList_ProductByAll";
 
     #endregion
+
     #region Order
     /// <summary>
     /// Insert_Orders
@@ -33,6 +38,7 @@ public static class SpNameCollection
     public const string GetOrderByTableId = "GetList_OrderByTableId";
 
     #endregion
+
     #region Basket
     /// <summary>
     /// GetList_Basket

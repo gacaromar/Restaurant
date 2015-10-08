@@ -44,7 +44,33 @@ namespace Restaurant.DataClass
                     ProductGroup = new ProductGroup()
                     {
                         Id = row.Field<int>("ProductGroupId"),
+                    },
+                    SalesPrice = row.Field<double>("SalesPrice"),
+                    CurrencyType = row.Field<string>("CurrencyType"),
+                    ProductName = row.Field<string>("Name"),
+                    RecordDate = row.Field<DateTime>("RecordDate")
 
+                };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public static List<Product> GetProductByAll()
+        {
+            List<Product> list = new List<Product>();
+            DataTable dt = DAL.GetProductByAll();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Product item = new Product()
+                {
+                    Id = row.Field<int>("Id"),
+                    ProductGroup = new ProductGroup()
+                    {
+                        Id = row.Field<int>("ProductGroupId"),
+                        ProductGroupName = row.Field<string>("ProductGroupName")
                     },
                     SalesPrice = row.Field<double>("SalesPrice"),
                     CurrencyType = row.Field<string>("CurrencyType"),
@@ -64,6 +90,20 @@ namespace Restaurant.DataClass
 }
 public partial class DataAccessLayer
 {
+
+    public DataTable GetProductByAll()
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetProductByAll,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters()));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
+
     public DataTable GetProductByProductGroupId(int pProductGroupId)
     {
         try
