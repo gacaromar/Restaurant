@@ -17,7 +17,7 @@ namespace Restaurant.DataClass
         public Table Table { get; set; }
         public ProductGroup ProductGroup { get; set; }
         public Product Product { get; set; }
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public double Discount { get; set; }
         public DateTime RecordDate { get; set; }
         public int Status { get; set; }
@@ -39,18 +39,26 @@ namespace Restaurant.DataClass
                 vBasket.Product = new Product
                 {
                     Id = dr.Field<int>("ProductId"),
-                    ProductName = dr.Field<string>("ProductName")
+                    ProductName = dr.Field<string>("ProductName"),
+                    SalesPrice = dr.Field<double>("SalesPrice")
                 };
                 vBasket.Chelner = new Chelner { Id = dr.Field<int>("ChelnerId") };
                 vBasket.Id = dr.Field<int>("Id");
                 vBasket.Discount = dr.Field<double>("Discount");
                 vBasket.ProductGroup = new ProductGroup { Id = dr.Field<int>("ProductGroupId") };
-                vBasket.Quantity = dr.Field<int>("Quantity");
+                vBasket.Quantity = dr.Field<double>("Quantity");
                 vBasket.RecordDate = dr.Field<DateTime>("RecordDate");
                 vBasket.Table = new Table { Id = dr.Field<int>("TableId") };
                 vList.Add(vBasket);
             }
             return vList;
+        }
+
+        public static int InsertBasket(int pTableId, int pProductGroupId, int pChelnerId, int pProductId, double pDiscount, int pQuantity)
+        {
+            var dt = DAL.InsertBasket(pTableId, pProductGroupId, pChelnerId, pProductId, pDiscount, pQuantity);
+            if (dt.Rows.Count == 0) return -1;
+            return Convert.ToInt32(dt.Rows[0][0]);
         }
     }
 
@@ -64,6 +72,18 @@ public partial class DataAccessLayer
         {
             return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetBasketList,
                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
+    public DataTable InsertBasket(int pTableId, int pProductGroupId, int pChelnerId, int pProductId, double pDiscount, double pQuantity)
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.InsertBasket,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId, pProductGroupId, pChelnerId, pProductId, pDiscount, pQuantity));
         }
         catch (Exception ex)
         {

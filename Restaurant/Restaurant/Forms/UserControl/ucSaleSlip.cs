@@ -16,17 +16,26 @@ namespace Restaurant.Forms.UserControl
         public ucSaleSlip(Table pTable)
         {
             InitializeComponent();
-            if (pTable.Active)
-            {
-                gTable = pTable;
-                var vBasket = Basket.GetBasketList(pTable.Id);
-                gChelner = vBasket[0].Chelner;
-                dgvProducts.DataSource = vBasket;
-            }
+            LoadInitializeValues(pTable);
+        }
+
+        private void LoadInitializeValues(Table pTable)
+        {
             var vGroups = ProductGroup.GetAllProductGroups();
             var ucProductGroups = new ucProductGroups();
             ucProductGroups.SetGroups(vGroups, GroupClick);
             gbGroups.Controls.Add(ucProductGroups);
+            cmbTables.ValueMember = "Id";
+            cmbTables.DisplayMember = "TableName";
+            cmbTables.DataSource = Table.GetAllTables();
+            cmbTables.SelectedValue = pTable.Id;
+            gTable = pTable;
+            if (pTable.Active)
+            {
+                var vBasket = Basket.GetBasketList(pTable.Id);
+                gChelner = vBasket[0].Chelner;
+                dgvProducts.DataSource = vBasket;
+            }
         }
 
         private void GroupClick(object sender, EventArgs e)
@@ -43,18 +52,32 @@ namespace Restaurant.Forms.UserControl
         private void ProductClick(object sender, EventArgs e)
         {
             if (sender == null) return;
-            var vList = dgvProducts.DataSource as List<Orders>;
-            var vProduct = ((sender as Button).Parent as ucProductGroup).Product;
-            if (vList != null && vList.Any(l => l.Id == vProduct.Id))
+            if (gChelner == null || gChelner.Id == 0)
             {
-                Orders.InsertOrder(gTable.Id, vProduct.ProductGroup.Id, gChelner.Id, vProduct.Id, vProduct.SalesPrice,
-                    gDiscount,
-                    gQuantity, vProduct.SalesPrice * gQuantity);
+                MessageBox.Show("Lütfen Adisyon için Garson Seçiniz", "Garson Seçimi", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            var vList = dgvProducts.DataSource as List<Basket>;
+            var vProduct = ((sender as Button).Parent as ucProductGroup).Product;
+            if (vList == null || vList.All(l => l.Id != vProduct.Id))
+            {
+                Basket.InsertBasket(gTable.Id, vProduct.ProductGroup.Id, gChelner.Id, vProduct.Id, gDiscount, gQuantity);
             }
         }
         private void btnIncrement_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAddSaleser_Click(object sender, EventArgs e)
+        {
+            var frm = new ChelnerForm();
+            frm.ShowDialog();
+            gChelner = new Chelner
+            {
+                Id = frm.ChelnerId
+            };
+            frm.Dispose();
         }
     }
 }

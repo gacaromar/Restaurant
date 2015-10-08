@@ -38,6 +38,17 @@ public static class SpNameCollection
     /// GetList_Basket
     /// </summary>
     public const string GetBasketList = "GetList_Basket";
+    /// <summary>
+    /// Insert_Basket
+    /// </summary>
+    public const string InsertBasket = "Insert_Basket";
+
+    #endregion
+    #region Chelner
+    /// <summary>
+    /// GetList_ChelnerList 
+    /// </summary>
+    public const string GetChelnerList = "GetList_Chelner";
 
     #endregion
 }

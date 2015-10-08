@@ -45,7 +45,7 @@
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -146,13 +146,15 @@
             // 
             this.dgvProducts.AllowUserToAddRows = false;
             this.dgvProducts.AllowUserToOrderColumns = true;
+            this.dgvProducts.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.dgvAutoGeneretaFalse;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProductName,
             this.Price,
             this.Quantity,
-            this.Amount,
+            this.Total,
             this.Delete});
+            this.dgvProducts.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "dgvAutoGeneretaFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dgvProducts.Location = new System.Drawing.Point(5, 36);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.Size = new System.Drawing.Size(301, 325);
@@ -167,6 +169,7 @@
             this.btnAddSaleser.TabIndex = 7;
             this.btnAddSaleser.Text = "Garson";
             this.btnAddSaleser.UseVisualStyleBackColor = true;
+            this.btnAddSaleser.Click += new System.EventHandler(this.btnAddSaleser_Click);
             // 
             // cmbTables
             // 
@@ -197,29 +200,34 @@
             // 
             // ProductName
             // 
+            this.ProductName.DataPropertyName = "Product.ProductName";
             this.ProductName.HeaderText = "Ürün";
             this.ProductName.Name = "ProductName";
             // 
             // Price
             // 
+            this.Price.DataPropertyName = "Product.SalesPrice";
             this.Price.HeaderText = "Fiyatı";
             this.Price.Name = "Price";
             this.Price.ReadOnly = true;
             // 
             // Quantity
             // 
+            this.Quantity.DataPropertyName = "Quantity";
             this.Quantity.HeaderText = "Mik.";
             this.Quantity.Name = "Quantity";
             this.Quantity.ReadOnly = true;
             // 
-            // Amount
+            // Total
             // 
-            this.Amount.HeaderText = "Toplam";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
+            this.Total.DataPropertyName = "Total";
+            this.Total.HeaderText = "Toplam";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
             // 
             // Delete
             // 
+            this.Delete.DataPropertyName = "Id";
             this.Delete.HeaderText = "Sil";
             this.Delete.Name = "Delete";
             // 
@@ -259,7 +267,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
 
     }
