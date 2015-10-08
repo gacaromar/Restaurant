@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.Name = "ucProducts";
-            this.Size = new System.Drawing.Size(710, 390);
+            this.Size = new System.Drawing.Size(709, 389);
             this.ResumeLayout(false);
 
         }

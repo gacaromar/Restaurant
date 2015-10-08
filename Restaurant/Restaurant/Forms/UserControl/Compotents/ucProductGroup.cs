@@ -1,13 +1,15 @@
-﻿namespace Restaurant.Forms.UserControl.Compotents
+﻿using Restaurant.DataClass;
+
+namespace Restaurant.Forms.UserControl.Compotents
 {
     public partial class ucProductGroup : System.Windows.Forms.UserControl
     {
-        public string GroupName
+        public Product Product { get; set; }
+        public ProductGroup ProductGroup { get; set; }
+        public string Text
         {
-            get { return btnGroupName.Text; }
             set { btnGroupName.Text = value; }
         }
-        public int GroupID { get; set; }
         public ucProductGroup()
         {
             InitializeComponent();

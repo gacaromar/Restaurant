@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Restaurant.DataClass;
 using Restaurant.Forms.UserControl;
@@ -19,13 +18,7 @@ namespace Restaurant.Forms
 
             var tbl = new ucTables();
             tbl.Dock = DockStyle.Fill;
-            var vList = new List<Table>();
-            vList.Add(new Table
-            {
-                Active = true,
-                TableName = "1",
-                Id = 1
-            });
+            var vList = Table.GetAllTables();
             tbl.AddTable(vList, tbl_Click);
             tabPage1.Controls.Add(tbl);
         }
@@ -50,7 +43,7 @@ namespace Restaurant.Forms
 
         private void SetAdisyon(Table vTable)
         {
-            var ucSlips = new ucSaleSlip();
+            var ucSlips = new ucSaleSlip(vTable);
             tabPage2.Controls.Add(ucSlips);
             tabControl1.SelectedIndex = 1;
         }

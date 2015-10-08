@@ -9,7 +9,7 @@ using Utilities;
 namespace Restaurant.DataClass
 {
     [Serializable]
-  public class Product : DataAccess
+    public class Product : DataAccess
     {
         #region Properties
 
@@ -17,6 +17,12 @@ namespace Restaurant.DataClass
         public ProductGroup ProductGroup { get; set; }
         public string ProductName { get; set; }
         public double SalesPrice { get; set; }
+
+        public string ProductNameSalesPrice
+        {
+            get { return ProductName + "\n(" + SalesPrice.ToString("N2") +" TL)"; }
+        }
+
         public string CurrencyType { get; set; }
         public DateTime RecordDate { get; set; }
         public int Status { get; set; }
@@ -54,7 +60,7 @@ namespace Restaurant.DataClass
 
         #endregion
     }
-  
+
 }
 public partial class DataAccessLayer
 {

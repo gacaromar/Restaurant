@@ -18,8 +18,8 @@ namespace Restaurant.Forms.UserControl
             for (int i = 0, j = 0; i < pSource.Count; i++, j++)
             {
                 var tbl = new ucProductGroup();
-                tbl.GroupID = pSource[i].Id;
-                tbl.GroupName = pSource[i].ProductGroupName;
+                tbl.ProductGroup = pSource[i];
+                tbl.Text = pSource[i].ProductGroupName;
                 tbl.btnGroupName.Click += btnProductGroupClick;
                 tbl.Width = 85;
                 tbl.Height = 35;
@@ -28,7 +28,7 @@ namespace Restaurant.Forms.UserControl
                     j = 0; row++;
                 }
                 tbl.Left = 5 + (85 * j);
-                tbl.Top = 5 + 35 * row;
+                tbl.Top = 12 + 35 * row;
                 this.Controls.Add(tbl);
             }
             return true;

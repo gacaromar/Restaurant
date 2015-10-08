@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlGroups = new System.Windows.Forms.Panel();
-            this.pnlProducts = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnDecrement = new System.Windows.Forms.Button();
@@ -40,31 +38,18 @@
             this.btnGift = new System.Windows.Forms.Button();
             this.btnCancelSlip = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.Product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddSaleser = new System.Windows.Forms.Button();
+            this.cmbTables = new System.Windows.Forms.ComboBox();
+            this.gbGroups = new System.Windows.Forms.GroupBox();
+            this.gbProducts = new System.Windows.Forms.GroupBox();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnAddSaleser = new System.Windows.Forms.Button();
-            this.cmbTables = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pnlGroups
-            // 
-            this.pnlGroups.AutoScroll = true;
-            this.pnlGroups.Location = new System.Drawing.Point(311, 1);
-            this.pnlGroups.Name = "pnlGroups";
-            this.pnlGroups.Size = new System.Drawing.Size(710, 105);
-            this.pnlGroups.TabIndex = 6;
-            // 
-            // pnlProducts
-            // 
-            this.pnlProducts.Location = new System.Drawing.Point(311, 112);
-            this.pnlProducts.Name = "pnlProducts";
-            this.pnlProducts.Size = new System.Drawing.Size(710, 365);
-            this.pnlProducts.TabIndex = 6;
             // 
             // panel1
             // 
@@ -163,7 +148,7 @@
             this.dgvProducts.AllowUserToOrderColumns = true;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Product,
+            this.ProductName,
             this.Price,
             this.Quantity,
             this.Amount,
@@ -173,10 +158,47 @@
             this.dgvProducts.Size = new System.Drawing.Size(301, 325);
             this.dgvProducts.TabIndex = 8;
             // 
-            // Product
+            // btnAddSaleser
             // 
-            this.Product.HeaderText = "Ürün";
-            this.Product.Name = "Product";
+            this.btnAddSaleser.Location = new System.Drawing.Point(173, 4);
+            this.btnAddSaleser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddSaleser.Name = "btnAddSaleser";
+            this.btnAddSaleser.Size = new System.Drawing.Size(133, 25);
+            this.btnAddSaleser.TabIndex = 7;
+            this.btnAddSaleser.Text = "Garson";
+            this.btnAddSaleser.UseVisualStyleBackColor = true;
+            // 
+            // cmbTables
+            // 
+            this.cmbTables.FormattingEnabled = true;
+            this.cmbTables.Location = new System.Drawing.Point(5, 4);
+            this.cmbTables.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTables.Name = "cmbTables";
+            this.cmbTables.Size = new System.Drawing.Size(160, 24);
+            this.cmbTables.TabIndex = 6;
+            // 
+            // gbGroups
+            // 
+            this.gbGroups.Location = new System.Drawing.Point(311, 0);
+            this.gbGroups.Name = "gbGroups";
+            this.gbGroups.Size = new System.Drawing.Size(713, 112);
+            this.gbGroups.TabIndex = 8;
+            this.gbGroups.TabStop = false;
+            this.gbGroups.Text = "Ürün Grupları";
+            // 
+            // gbProducts
+            // 
+            this.gbProducts.Location = new System.Drawing.Point(311, 112);
+            this.gbProducts.Name = "gbProducts";
+            this.gbProducts.Size = new System.Drawing.Size(713, 368);
+            this.gbProducts.TabIndex = 8;
+            this.gbProducts.TabStop = false;
+            this.gbProducts.Text = "Ürünler";
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Ürün";
+            this.ProductName.Name = "ProductName";
             // 
             // Price
             // 
@@ -201,32 +223,13 @@
             this.Delete.HeaderText = "Sil";
             this.Delete.Name = "Delete";
             // 
-            // btnAddSaleser
-            // 
-            this.btnAddSaleser.Location = new System.Drawing.Point(173, 4);
-            this.btnAddSaleser.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddSaleser.Name = "btnAddSaleser";
-            this.btnAddSaleser.Size = new System.Drawing.Size(133, 25);
-            this.btnAddSaleser.TabIndex = 7;
-            this.btnAddSaleser.Text = "Garson";
-            this.btnAddSaleser.UseVisualStyleBackColor = true;
-            // 
-            // cmbTables
-            // 
-            this.cmbTables.FormattingEnabled = true;
-            this.cmbTables.Location = new System.Drawing.Point(5, 4);
-            this.cmbTables.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTables.Name = "cmbTables";
-            this.cmbTables.Size = new System.Drawing.Size(160, 24);
-            this.cmbTables.TabIndex = 6;
-            // 
             // ucSaleSlip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbProducts);
+            this.Controls.Add(this.gbGroups);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.pnlProducts);
-            this.Controls.Add(this.pnlGroups);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ucSaleSlip";
@@ -239,8 +242,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel pnlGroups;
-        private System.Windows.Forms.Panel pnlProducts;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDecrement;
@@ -251,13 +252,15 @@
         private System.Windows.Forms.Button btnGift;
         private System.Windows.Forms.Button btnCancelSlip;
         private System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Product;
+        private System.Windows.Forms.Button btnAddSaleser;
+        private System.Windows.Forms.ComboBox cmbTables;
+        private System.Windows.Forms.GroupBox gbGroups;
+        private System.Windows.Forms.GroupBox gbProducts;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.Button btnAddSaleser;
-        private System.Windows.Forms.ComboBox cmbTables;
 
     }
 }

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using Utilities;
 
 namespace Restaurant.DataClass
 {
@@ -18,16 +21,53 @@ namespace Restaurant.DataClass
         public double Discount { get; set; }
         public DateTime RecordDate { get; set; }
         public int Status { get; set; }
-
+        public Chelner Chelner { get; set; }
+        public double Total { get { return Product.SalesPrice * Quantity; } }
         #endregion
 
         #region Methods
 
         #endregion
+
+        public static List<Basket> GetBasketList(int pTableId)
+        {
+            var dt = DAL.GetBasketList(pTableId);
+            var vList = new List<Basket>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                var vBasket = new Basket();
+                vBasket.Product = new Product
+                {
+                    Id = dr.Field<int>("ProductId"),
+                    ProductName = dr.Field<string>("ProductName")
+                };
+                vBasket.Chelner = new Chelner { Id = dr.Field<int>("ChelnerId") };
+                vBasket.Id = dr.Field<int>("Id");
+                vBasket.Discount = dr.Field<double>("Discount");
+                vBasket.ProductGroup = new ProductGroup { Id = dr.Field<int>("ProductGroupId") };
+                vBasket.Quantity = dr.Field<int>("Quantity");
+                vBasket.RecordDate = dr.Field<DateTime>("RecordDate");
+                vBasket.Table = new Table { Id = dr.Field<int>("TableId") };
+                vList.Add(vBasket);
+            }
+            return vList;
+        }
     }
-   
+
 }
 public partial class DataAccessLayer
 {
 
+    public DataTable GetBasketList(int pTableId)
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetBasketList,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
 }
