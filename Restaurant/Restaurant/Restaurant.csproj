@@ -104,6 +104,12 @@
     <Compile Include="Forms\UserControl\ucProducts.Designer.cs">
       <DependentUpon>ucProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl\ucQuantity.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl\ucQuantity.Designer.cs">
+      <DependentUpon>ucQuantity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserControl\ucSaleSlip.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,6 +128,7 @@
     <Compile Include="Forms\UserControl\ucTables.Designer.cs">
       <DependentUpon>ucTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\GlobalHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -145,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucProducts.resx">
       <DependentUpon>ucProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl\ucQuantity.resx">
+      <DependentUpon>ucQuantity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucSaleSlip.resx">
       <DependentUpon>ucSaleSlip.cs</DependentUpon>

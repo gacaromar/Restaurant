@@ -37,7 +37,7 @@ namespace Restaurant.DataClass
                     TableName = row.Field<string>("Name"),
                     Active = row.Field<bool>("Active"),
                     RecordDate = row.Field<DateTime>("RecordDate")
-                    
+
                 };
                 list.Add(item);
             }
@@ -47,12 +47,12 @@ namespace Restaurant.DataClass
 
         public bool Save()
         {
-          return  DAL.InsertTable(TableName);
+            return DAL.InsertTable(TableName);
         }
 
         public bool Update()
         {
-            return DAL.UpdateTable(Id,TableName);
+            return DAL.UpdateTable(Id, TableName);
         }
 
         public bool Delete()
@@ -62,9 +62,35 @@ namespace Restaurant.DataClass
 
         #endregion
 
+
+        public static Table GetTableById(int pId)
+        {
+            Table list = new Table();
+            DataTable dt = DAL.GetTableById(pId);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Table item = new Table()
+                {
+                    Id = row.Field<int>("Id"),
+                    TableName = row.Field<string>("Name"),
+                    Active = row.Field<bool>("Active"),
+                    RecordDate = row.Field<DateTime>("RecordDate")
+
+                };
+                list = item;
+            }
+
+            return list;
+        }
+
+        public static void UpdateActive(int pId)
+        {
+            DAL.UpdateTableActive(pId);
+        }
     }
 
- 
+
 }
 
 public partial class DataAccessLayer
@@ -78,7 +104,7 @@ public partial class DataAccessLayer
         }
         catch (Exception ex)
         {
-            return null;
+            return new DataTable();
         }
     }
 
@@ -87,7 +113,7 @@ public partial class DataAccessLayer
         try
         {
             UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.DeleteTable,
-                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),pId));
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId));
             return true;
         }
         catch (Exception ex)
@@ -102,7 +128,7 @@ public partial class DataAccessLayer
         try
         {
             UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateTable,
-                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),pId, pName));
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId, pName));
             return true;
         }
         catch (Exception ex)
@@ -126,4 +152,31 @@ public partial class DataAccessLayer
         }
     }
 
+
+    public DataTable GetTableById(int pId)
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.GetTableById,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
+
+    public void UpdateTableActive(int pId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure,
+                SpNameCollection.UpdateTableActive,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo) MethodBase.GetCurrentMethod()).GetParameters(),
+                    pId));
+        }
+        catch (Exception ex)
+        {
+        }
+    }
 }

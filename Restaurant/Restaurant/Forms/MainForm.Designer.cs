@@ -59,7 +59,7 @@
             // kayıtlarToolStripMenuItem
             // 
             this.kayıtlarToolStripMenuItem.Name = "kayıtlarToolStripMenuItem";
-            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.kayıtlarToolStripMenuItem.Text = "Kayıtlar";
             this.kayıtlarToolStripMenuItem.Click += new System.EventHandler(this.kayıtlarToolStripMenuItem_Click);
             // 
@@ -73,6 +73,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(899, 478);
             this.tabControl1.TabIndex = 1;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 

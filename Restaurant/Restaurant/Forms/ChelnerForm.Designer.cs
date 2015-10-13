@@ -49,6 +49,7 @@
             this.dgvChelner.Size = new System.Drawing.Size(184, 261);
             this.dgvChelner.TabIndex = 0;
             this.dgvChelner.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChelner_CellDoubleClick);
+            this.dgvChelner.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvChelner_CellFormatting);
             // 
             // ChelnerName
             // 

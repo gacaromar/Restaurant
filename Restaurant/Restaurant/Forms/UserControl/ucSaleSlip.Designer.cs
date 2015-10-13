@@ -38,15 +38,15 @@
             this.btnGift = new System.Windows.Forms.Button();
             this.btnCancelSlip = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.btnAddSaleser = new System.Windows.Forms.Button();
-            this.cmbTables = new System.Windows.Forms.ComboBox();
-            this.gbGroups = new System.Windows.Forms.GroupBox();
-            this.gbProducts = new System.Windows.Forms.GroupBox();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnAddSaleser = new System.Windows.Forms.Button();
+            this.cmbTables = new System.Windows.Forms.ComboBox();
+            this.gbGroups = new System.Windows.Forms.GroupBox();
+            this.gbProducts = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -159,44 +159,7 @@
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.Size = new System.Drawing.Size(301, 325);
             this.dgvProducts.TabIndex = 8;
-            // 
-            // btnAddSaleser
-            // 
-            this.btnAddSaleser.Location = new System.Drawing.Point(173, 4);
-            this.btnAddSaleser.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAddSaleser.Name = "btnAddSaleser";
-            this.btnAddSaleser.Size = new System.Drawing.Size(133, 25);
-            this.btnAddSaleser.TabIndex = 7;
-            this.btnAddSaleser.Text = "Garson";
-            this.btnAddSaleser.UseVisualStyleBackColor = true;
-            this.btnAddSaleser.Click += new System.EventHandler(this.btnAddSaleser_Click);
-            // 
-            // cmbTables
-            // 
-            this.cmbTables.FormattingEnabled = true;
-            this.cmbTables.Location = new System.Drawing.Point(5, 4);
-            this.cmbTables.Margin = new System.Windows.Forms.Padding(4);
-            this.cmbTables.Name = "cmbTables";
-            this.cmbTables.Size = new System.Drawing.Size(160, 24);
-            this.cmbTables.TabIndex = 6;
-            // 
-            // gbGroups
-            // 
-            this.gbGroups.Location = new System.Drawing.Point(311, 0);
-            this.gbGroups.Name = "gbGroups";
-            this.gbGroups.Size = new System.Drawing.Size(713, 112);
-            this.gbGroups.TabIndex = 8;
-            this.gbGroups.TabStop = false;
-            this.gbGroups.Text = "Ürün Grupları";
-            // 
-            // gbProducts
-            // 
-            this.gbProducts.Location = new System.Drawing.Point(311, 112);
-            this.gbProducts.Name = "gbProducts";
-            this.gbProducts.Size = new System.Drawing.Size(713, 368);
-            this.gbProducts.TabIndex = 8;
-            this.gbProducts.TabStop = false;
-            this.gbProducts.Text = "Ürünler";
+            this.dgvProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvProducts_CellFormatting);
             // 
             // ProductName
             // 
@@ -230,6 +193,47 @@
             this.Delete.DataPropertyName = "Id";
             this.Delete.HeaderText = "Sil";
             this.Delete.Name = "Delete";
+            // 
+            // btnAddSaleser
+            // 
+            this.btnAddSaleser.Location = new System.Drawing.Point(173, 4);
+            this.btnAddSaleser.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddSaleser.Name = "btnAddSaleser";
+            this.btnAddSaleser.Size = new System.Drawing.Size(133, 25);
+            this.btnAddSaleser.TabIndex = 7;
+            this.btnAddSaleser.Text = "Garson";
+            this.btnAddSaleser.UseVisualStyleBackColor = true;
+            this.btnAddSaleser.Click += new System.EventHandler(this.btnAddSaleser_Click);
+            // 
+            // cmbTables
+            // 
+            this.cmbTables.DisplayMember = "TableName";
+            this.cmbTables.FormattingEnabled = true;
+            this.cmbTables.Location = new System.Drawing.Point(5, 4);
+            this.cmbTables.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbTables.Name = "cmbTables";
+            this.cmbTables.Size = new System.Drawing.Size(160, 24);
+            this.cmbTables.TabIndex = 6;
+            this.cmbTables.ValueMember = "Id";
+            this.cmbTables.SelectedIndexChanged += new System.EventHandler(this.cmbTables_SelectedIndexChanged);
+            // 
+            // gbGroups
+            // 
+            this.gbGroups.Location = new System.Drawing.Point(311, 0);
+            this.gbGroups.Name = "gbGroups";
+            this.gbGroups.Size = new System.Drawing.Size(713, 112);
+            this.gbGroups.TabIndex = 8;
+            this.gbGroups.TabStop = false;
+            this.gbGroups.Text = "Ürün Grupları";
+            // 
+            // gbProducts
+            // 
+            this.gbProducts.Location = new System.Drawing.Point(311, 112);
+            this.gbProducts.Name = "gbProducts";
+            this.gbProducts.Size = new System.Drawing.Size(713, 368);
+            this.gbProducts.TabIndex = 8;
+            this.gbProducts.TabStop = false;
+            this.gbProducts.Text = "Ürünler";
             // 
             // ucSaleSlip
             // 

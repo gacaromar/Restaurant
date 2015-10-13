@@ -60,6 +60,11 @@ namespace Restaurant.DataClass
             if (dt.Rows.Count == 0) return -1;
             return Convert.ToInt32(dt.Rows[0][0]);
         }
+
+        public static int Update(int pTableId, int pProductId, double pQuantity)
+        {
+            return DAL.UpdateBasket(pTableId, pProductId, pQuantity);
+        }
     }
 
 }
@@ -88,6 +93,20 @@ public partial class DataAccessLayer
         catch (Exception ex)
         {
             return new DataTable();
+        }
+    }
+
+    internal int UpdateBasket(int pTableId, int pProductId, double pQuantity)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateBasket,
+                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId, pProductId, pQuantity));
+            return 1;
+        }
+        catch (Exception ex)
+        {
+            return -1;
         }
     }
 }

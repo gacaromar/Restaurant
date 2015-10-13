@@ -15,7 +15,11 @@ namespace Restaurant.Forms
         public MainForm()
         {
             InitializeComponent();
+            LoadTables();
+        }
 
+        private void LoadTables()
+        {
             var tbl = new ucTables();
             tbl.Dock = DockStyle.Fill;
             var vList = Table.GetAllTables();
@@ -52,6 +56,11 @@ namespace Restaurant.Forms
         {
             CreateForm frmCreateForm = new CreateForm();
             frmCreateForm.ShowDialog();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿
-using System.ComponentModel;
-
-public static class SpNameCollection
+﻿public static class SpNameCollection
 {
     #region Table
 
@@ -9,6 +6,8 @@ public static class SpNameCollection
     public static string UpdateTable = "Update_Table";
     public static string GetAllTables = "GetList_AllTables";
     public static string DeleteTable = "Delete_Table";
+    public const string GetTableById = "GetItem_TableById";
+    public const string UpdateTableActive = "Update_TableActiveById";
     #endregion
 
     #region ProductGroup
@@ -48,6 +47,10 @@ public static class SpNameCollection
     /// Insert_Basket
     /// </summary>
     public const string InsertBasket = "Insert_Basket";
+    /// <summary>
+    /// Update_Basket
+    /// </summary>
+    public const string UpdateBasket = "Update_Basket";
 
     #endregion
     #region Chelner
