@@ -12,6 +12,7 @@ namespace Restaurant.Forms
 {
     public partial class MainForm : Form
     {
+        Table vTable;
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace Restaurant.Forms
             tbl.Dock = DockStyle.Fill;
             var vList = Table.GetAllTables();
             tbl.AddTable(vList, tbl_Click);
+            tabPage1.Controls.Clear();
             tabPage1.Controls.Add(tbl);
         }
 
@@ -35,21 +37,23 @@ namespace Restaurant.Forms
                 return;
             }
             var vucTable = ((sender as PictureBox).Parent as ucTable);
-            var vTable = new Table
+             vTable = new Table
             {
                 Active = vucTable.TableActive,
                 TableName = vucTable.TableName,
                 Id = vucTable.TableID
             };
-            SetAdisyon(vTable);
+           //SetAdisyon(vTable);
             tabControl1.SelectedIndex = 1;
+            
         }
 
         private void SetAdisyon(Table vTable)
         {
             var ucSlips = new ucSaleSlip(vTable);
+            tabPage2.Controls.Clear();
             tabPage2.Controls.Add(ucSlips);
-            tabControl1.SelectedIndex = 1;
+            //tabControl1.SelectedIndex = 1;
         }
 
         private void kayıtlarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -60,7 +64,19 @@ namespace Restaurant.Forms
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            switch (tabControl1.SelectedIndex)
+            {
+                case 0:
+                    LoadTables();
+                    break;
+                case 1:
+                    SetAdisyon(vTable);
+                    break;
 
+
+                default:
+                    break;
+            }
         }
     }
 }

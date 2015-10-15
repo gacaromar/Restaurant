@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.btnOk = new System.Windows.Forms.Button();
-            this.txtQty = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtDiscount = new System.Windows.Forms.TextBox();
+            this.txtQty = new System.Windows.Forms.NumericUpDown();
+            this.txtDiscount = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOk
@@ -45,13 +47,6 @@
             this.btnOk.Text = "Tamam";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // txtQty
-            // 
-            this.txtQty.Location = new System.Drawing.Point(8, 22);
-            this.txtQty.Name = "txtQty";
-            this.txtQty.Size = new System.Drawing.Size(84, 22);
-            this.txtQty.TabIndex = 1;
             // 
             // label1
             // 
@@ -73,25 +68,48 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "İndirim";
             // 
+            // txtQty
+            // 
+            this.txtQty.DecimalPlaces = 2;
+            this.txtQty.Location = new System.Drawing.Point(11, 20);
+            this.txtQty.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.txtQty.Name = "txtQty";
+            this.txtQty.Size = new System.Drawing.Size(67, 22);
+            this.txtQty.TabIndex = 1;
+            this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtQty.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // txtDiscount
             // 
-            this.txtDiscount.Location = new System.Drawing.Point(102, 22);
+            this.txtDiscount.DecimalPlaces = 2;
+            this.txtDiscount.Location = new System.Drawing.Point(94, 20);
             this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Size = new System.Drawing.Size(84, 22);
-            this.txtDiscount.TabIndex = 2;
+            this.txtDiscount.Size = new System.Drawing.Size(67, 22);
+            this.txtDiscount.TabIndex = 5;
+            this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // ucQuantity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtDiscount);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtQty);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOk);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Name = "ucQuantity";
             this.Size = new System.Drawing.Size(196, 76);
+            ((System.ComponentModel.ISupportInitialize)(this.txtQty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,9 +118,9 @@
         #endregion
 
         private System.Windows.Forms.Button btnOk;
-        public System.Windows.Forms.TextBox txtQty;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.TextBox txtDiscount;
+        public System.Windows.Forms.NumericUpDown txtQty;
+        public System.Windows.Forms.NumericUpDown txtDiscount;
     }
 }

@@ -15,6 +15,7 @@ namespace Restaurant.DataClass
 
         public int Id { get; set; }
         public ProductGroup ProductGroup { get; set; }
+        public string ProductGroupNameForProduct { get { return ProductGroup.ProductGroupName; } }
         public string ProductName { get; set; }
         public double SalesPrice { get; set; }
 

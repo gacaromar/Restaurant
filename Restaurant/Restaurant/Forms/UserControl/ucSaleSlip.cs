@@ -16,6 +16,7 @@ namespace Restaurant.Forms.UserControl
         private int gQuantity;
         private int gDiscount;
         private bool gComeMainForm = false;
+        List<Table> tables;
         public ucSaleSlip(Table pTable)
         {
             InitializeComponent();
@@ -31,14 +32,21 @@ namespace Restaurant.Forms.UserControl
             gbGroups.Controls.Add(ucProductGroups);
             cmbTables.ValueMember = "Id";
             cmbTables.DisplayMember = "TableName";
-            cmbTables.DataSource = Table.GetAllTables();
-            cmbTables.SelectedValue = pTable.Id;
-            gTable = pTable;
-            if (pTable.Active)
+            tables = Table.GetAllTables();
+            cmbTables.DataSource = tables;
+            if (pTable != null)
             {
-                LoadGrid(pTable.Id);
+                cmbTables.SelectedValue = pTable.Id;
+                gTable = pTable;
+                if (pTable.Active)
+                {
+                    LoadGrid(pTable.Id);
+                }
             }
             gComeMainForm = false;
+
+
+
         }
 
         void LoadGrid(int pTableId)
@@ -51,7 +59,7 @@ namespace Restaurant.Forms.UserControl
             }
             gChelner = vBasket[0].Chelner;
             dgvProducts.DataSource = vBasket;
-            gTable = Table.GetTableById(pTableId);
+            gTable = tables.Where(z => z.Id == pTableId).First();// Table.GetTableById(pTableId);
         }
         private void GroupClick(object sender, EventArgs e)
         {
@@ -76,20 +84,20 @@ namespace Restaurant.Forms.UserControl
             //}
             var ucQty = new ucQuantity();
             var frm = GlobalHelper.OpenShowForm(ucQty, FormBorderStyle.None, FormStartPosition.CenterScreen);
-            gQuantity = Convert.ToInt32(ucQty.txtQty.Text.Trim());
-            gDiscount = Convert.ToInt32(ucQty.txtDiscount.Text.Trim().Replace('.', ','));
+            gQuantity = Convert.ToInt32(ucQty.txtQty.Value);
+            gDiscount = Convert.ToInt32(ucQty.txtDiscount.Value.ToString().Replace('.', ','));
             GlobalHelper.FormDispose(frm);
 
             var vList = dgvProducts.DataSource as List<Basket>;
             var vProduct = ((sender as Button).Parent as ucProductGroup).Product;
-            if (vList == null || vList.Any(l => l.Id == vProduct.Id))
+            if (vList == null || vList.Where(l => l.Product.Id == vProduct.Id).Count() == 0)
             {
                 Basket.InsertBasket(gTable.Id, vProduct.ProductGroup.Id, gChelner == null ? -1 : gChelner.Id, vProduct.Id, gDiscount, gQuantity);
             }
             else
             {
                 var item = vList.Find(l => l.Product.Id == vProduct.Id);
-                Basket.Update(gTable.Id, vProduct.Id, item.Quantity + 1);
+                Basket.Update(gTable.Id, vProduct.Id, item.Quantity + gQuantity);
             }
             var vBasket = Basket.GetBasketList(gTable.Id);
             dgvProducts.DataSource = vBasket;
