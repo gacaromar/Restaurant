@@ -34,6 +34,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.raporlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -51,7 +53,9 @@
             // ayarlarToolStripMenuItem
             // 
             this.ayarlarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.kayıtlarToolStripMenuItem});
+            this.kayıtlarToolStripMenuItem,
+            this.raporlarToolStripMenuItem,
+            this.çıkışToolStripMenuItem});
             this.ayarlarToolStripMenuItem.Name = "ayarlarToolStripMenuItem";
             this.ayarlarToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.ayarlarToolStripMenuItem.Text = "Ayarlar";
@@ -59,8 +63,8 @@
             // kayıtlarToolStripMenuItem
             // 
             this.kayıtlarToolStripMenuItem.Name = "kayıtlarToolStripMenuItem";
-            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-            this.kayıtlarToolStripMenuItem.Text = "Kayıtlar";
+            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kayıtlarToolStripMenuItem.Text = "Tanımlamalar";
             this.kayıtlarToolStripMenuItem.Click += new System.EventHandler(this.kayıtlarToolStripMenuItem_Click);
             // 
             // tabControl1
@@ -77,23 +81,35 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(891, 452);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Masalar";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(891, 452);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Adisyon";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // raporlarToolStripMenuItem
+            // 
+            this.raporlarToolStripMenuItem.Name = "raporlarToolStripMenuItem";
+            this.raporlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.raporlarToolStripMenuItem.Text = "Raporlar";
+            // 
+            // çıkışToolStripMenuItem
+            // 
+            this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
+            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.çıkışToolStripMenuItem.Text = "Çıkış";
             // 
             // MainForm
             // 
@@ -104,7 +120,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Cafe Mola";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -122,5 +138,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStripMenuItem kayıtlarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem raporlarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem çıkışToolStripMenuItem;
     }
 }

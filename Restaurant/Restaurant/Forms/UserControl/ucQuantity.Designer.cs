@@ -70,7 +70,9 @@
             // 
             // txtQty
             // 
+            this.txtQty.BackColor = System.Drawing.Color.Orange;
             this.txtQty.DecimalPlaces = 2;
+            this.txtQty.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtQty.Location = new System.Drawing.Point(11, 20);
             this.txtQty.Minimum = new decimal(new int[] {
             1,
@@ -89,7 +91,9 @@
             // 
             // txtDiscount
             // 
+            this.txtDiscount.BackColor = System.Drawing.Color.Orange;
             this.txtDiscount.DecimalPlaces = 2;
+            this.txtDiscount.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtDiscount.Location = new System.Drawing.Point(94, 20);
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(67, 22);
@@ -100,6 +104,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.Controls.Add(this.txtDiscount);
             this.Controls.Add(this.txtQty);
             this.Controls.Add(this.label2);
