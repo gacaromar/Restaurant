@@ -14,6 +14,7 @@ namespace Restaurant.Forms.UserControl
         }
         public bool SetGroups(List<Product> pSource, EventHandler btnProductClick)
         {
+            
             int row = -1;
             for (int i = 0, j = 0; i < pSource.Count; i++, j++)
             {

@@ -241,11 +241,17 @@ namespace Restaurant.Forms
                 case 2:
                     LoadProduct();
                     cmbProductGroup.DataSource = ProductGroup.GetAllProductGroups();
+                    cmbCurrency.SelectedIndex =0;
                     break;
 
                 default:
                     break;
             }
+        }
+
+        private void btnProductSave_Click(object sender, EventArgs e)
+        {
+
         }
 
        

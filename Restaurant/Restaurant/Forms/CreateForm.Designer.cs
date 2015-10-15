@@ -51,10 +51,9 @@
             this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CurrencyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCurrency = new System.Windows.Forms.ComboBox();
             this.cmbProductGroup = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnProductSave = new System.Windows.Forms.Button();
             this.tbProductName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,6 +64,9 @@
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbPrice = new System.Windows.Forms.NumericUpDown();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -79,6 +81,7 @@
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // tb1
@@ -322,11 +325,13 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.comboBox1);
+            this.groupBox4.Controls.Add(this.tbPrice);
+            this.groupBox4.Controls.Add(this.cmbCurrency);
             this.groupBox4.Controls.Add(this.cmbProductGroup);
-            this.groupBox4.Controls.Add(this.button1);
-            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.btnProductSave);
             this.groupBox4.Controls.Add(this.tbProductName);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
@@ -337,53 +342,47 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Ürün Ekle";
             // 
-            // comboBox1
+            // cmbCurrency
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbCurrency.FormattingEnabled = true;
+            this.cmbCurrency.Items.AddRange(new object[] {
             "TL"});
-            this.comboBox1.Location = new System.Drawing.Point(483, 65);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(235, 21);
-            this.comboBox1.TabIndex = 3;
+            this.cmbCurrency.Location = new System.Drawing.Point(538, 65);
+            this.cmbCurrency.Name = "cmbCurrency";
+            this.cmbCurrency.Size = new System.Drawing.Size(131, 21);
+            this.cmbCurrency.TabIndex = 4;
             // 
             // cmbProductGroup
             // 
             this.cmbProductGroup.DisplayMember = "ProductGroupName";
             this.cmbProductGroup.FormattingEnabled = true;
-            this.cmbProductGroup.Location = new System.Drawing.Point(127, 32);
+            this.cmbProductGroup.Location = new System.Drawing.Point(94, 29);
             this.cmbProductGroup.Name = "cmbProductGroup";
-            this.cmbProductGroup.Size = new System.Drawing.Size(339, 21);
-            this.cmbProductGroup.TabIndex = 3;
+            this.cmbProductGroup.Size = new System.Drawing.Size(301, 21);
+            this.cmbProductGroup.TabIndex = 1;
             this.cmbProductGroup.ValueMember = "Id";
             // 
-            // button1
+            // btnProductSave
             // 
-            this.button1.Location = new System.Drawing.Point(643, 108);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Kaydet";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(483, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(235, 20);
-            this.textBox1.TabIndex = 1;
+            this.btnProductSave.Location = new System.Drawing.Point(594, 108);
+            this.btnProductSave.Name = "btnProductSave";
+            this.btnProductSave.Size = new System.Drawing.Size(75, 23);
+            this.btnProductSave.TabIndex = 2;
+            this.btnProductSave.Text = "Kaydet";
+            this.btnProductSave.UseVisualStyleBackColor = true;
+            this.btnProductSave.Click += new System.EventHandler(this.btnProductSave_Click);
             // 
             // tbProductName
             // 
-            this.tbProductName.Location = new System.Drawing.Point(127, 70);
+            this.tbProductName.Location = new System.Drawing.Point(94, 67);
             this.tbProductName.Name = "tbProductName";
-            this.tbProductName.Size = new System.Drawing.Size(339, 20);
-            this.tbProductName.TabIndex = 1;
+            this.tbProductName.Size = new System.Drawing.Size(301, 20);
+            this.tbProductName.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 32);
+            this.label4.Location = new System.Drawing.Point(17, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 0;
@@ -392,7 +391,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 73);
+            this.label3.Location = new System.Drawing.Point(17, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 0;
@@ -468,6 +467,33 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(444, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Döviz Tipi";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(444, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Ürün Fiyatı";
+            // 
+            // tbPrice
+            // 
+            this.tbPrice.DecimalPlaces = 2;
+            this.tbPrice.Location = new System.Drawing.Point(538, 29);
+            this.tbPrice.Name = "tbPrice";
+            this.tbPrice.Size = new System.Drawing.Size(131, 20);
+            this.tbPrice.TabIndex = 3;
+            this.tbPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,6 +521,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPrice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -517,13 +544,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dtProduct;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnProductSave;
         private System.Windows.Forms.TextBox tbProductName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cmbProductGroup;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cmbCurrency;
         private System.Windows.Forms.DataGridView dtChelner;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChelnerName;
         private System.Windows.Forms.GroupBox groupBox5;
@@ -538,5 +564,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn CurrencyType;
+        private System.Windows.Forms.NumericUpDown tbPrice;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
     }
 }

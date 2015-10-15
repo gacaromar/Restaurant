@@ -53,6 +53,7 @@
             // 
             // ChelnerName
             // 
+            this.ChelnerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ChelnerName.DataPropertyName = "ChelnerName";
             this.ChelnerName.HeaderText = "Garson";
             this.ChelnerName.Name = "ChelnerName";

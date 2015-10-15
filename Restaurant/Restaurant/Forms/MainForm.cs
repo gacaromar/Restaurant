@@ -7,6 +7,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Restaurant.DataClass;
 using Restaurant.Forms.UserControl;
+using Restaurant.Helper;
+using System.Threading;
 
 namespace Restaurant.Forms
 {
@@ -36,6 +38,8 @@ namespace Restaurant.Forms
                 MessageBox.Show("Lütfen Masa Seçiniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+           
+            
             var vucTable = ((sender as PictureBox).Parent as ucTable);
              vTable = new Table
             {
@@ -47,6 +51,7 @@ namespace Restaurant.Forms
             tabControl1.SelectedIndex = 1;
             
         }
+
 
         private void SetAdisyon(Table vTable)
         {

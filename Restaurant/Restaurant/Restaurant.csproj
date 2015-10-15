@@ -92,6 +92,12 @@
     <Compile Include="Forms\UserControl\Compotents\ucProductGroup.Designer.cs">
       <DependentUpon>ucProductGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl\ucLoading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl\ucLoading.Designer.cs">
+      <DependentUpon>ucLoading.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserControl\ucProductGroups.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\Compotents\ucProductGroup.resx">
       <DependentUpon>ucProductGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl\ucLoading.resx">
+      <DependentUpon>ucLoading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucProductGroups.resx">
       <DependentUpon>ucProductGroups.cs</DependentUpon>
@@ -202,6 +211,7 @@
     <Content Include="DLL\UtilityLibrary.dll" />
     <Content Include="Images\ActiveTable.png" />
     <Content Include="Images\PassiveTable.png" />
+    <None Include="Resources\loading.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
