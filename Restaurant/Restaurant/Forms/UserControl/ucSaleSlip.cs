@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Restaurant.DataClass;
 using Restaurant.Forms.UserControl.Compotents;
 using Restaurant.Helper;
+using System.Drawing;
 
 namespace Restaurant.Forms.UserControl
 {
@@ -13,10 +14,12 @@ namespace Restaurant.Forms.UserControl
     {
         private Table gTable;
         private Chelner gChelner;
-        private int gQuantity;
-        private int gDiscount;
+        List<Basket> vBasket;
+        private double gQuantity;
+        private double gDiscount;
         private bool gComeMainForm = false;
         List<Table> tables;
+        double total ;
         public ucSaleSlip(Table pTable)
         {
             InitializeComponent();
@@ -51,7 +54,7 @@ namespace Restaurant.Forms.UserControl
 
         void LoadGrid(int pTableId)
         {
-            var vBasket = Basket.GetBasketList(pTableId);
+             vBasket = Basket.GetBasketList(pTableId);
             if (vBasket.Count == 0)
             {
                 dgvProducts.DataSource = null;
@@ -60,6 +63,10 @@ namespace Restaurant.Forms.UserControl
             gChelner = vBasket[0].Chelner;
             dgvProducts.DataSource = vBasket;
             gTable = tables.Where(z => z.Id == pTableId).First();// Table.GetTableById(pTableId);
+
+            total = vBasket.Sum(t => t.Total);
+            lblTotal.Text = total.ToString("N2");
+
         }
         private void GroupClick(object sender, EventArgs e)
         {
@@ -84,8 +91,8 @@ namespace Restaurant.Forms.UserControl
             //}
             var ucQty = new ucQuantity();
             var frm = GlobalHelper.OpenShowForm(ucQty, FormBorderStyle.None, FormStartPosition.CenterScreen);
-            gQuantity = Convert.ToInt32(ucQty.txtQty.Value);
-            gDiscount = Convert.ToInt32(ucQty.txtDiscount.Value.ToString().Replace('.', ','));
+            gQuantity = Convert.ToDouble(ucQty.txtQty.Value);
+            gDiscount = Convert.ToDouble(ucQty.txtDiscount.Value.ToString().Replace('.', ','));
             GlobalHelper.FormDispose(frm);
 
             var vList = dgvProducts.DataSource as List<Basket>;
@@ -99,12 +106,22 @@ namespace Restaurant.Forms.UserControl
                 var item = vList.Find(l => l.Product.Id == vProduct.Id);
                 Basket.Update(gTable.Id, vProduct.Id, item.Quantity + gQuantity);
             }
-            var vBasket = Basket.GetBasketList(gTable.Id);
-            dgvProducts.DataSource = vBasket;
+
+            LoadBasket();
+
             if (!gTable.Active)
             {
                 Table.UpdateActive(gTable.Id);
             }
+        }
+
+        private void LoadBasket()
+        {
+             vBasket = Basket.GetBasketList(gTable.Id);
+            dgvProducts.DataSource = vBasket;
+
+            total = vBasket.Sum(t => t.Total);
+            lblTotal.Text = total.ToString("N2");
         }
         private void btnIncrement_Click(object sender, EventArgs e)
         {
@@ -168,6 +185,119 @@ namespace Restaurant.Forms.UserControl
             if (!gComeMainForm)
                 LoadGrid((Convert.ToInt32(cmbTables.SelectedValue)));
         }
+
+        private void btnCloseSlip_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Adisyon yazdırmak istermisiniz ? ", "Adisyon", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                // Adisyon yazdır
+                SaveOrder();
+            }
+            else
+            {
+                SaveOrder();
+            }
+        }
+
+        private void SaveOrder()
+        {
+            int orderId = Orders.InsertOrder(gTable.Id, gChelner.Id, vBasket.Count, Convert.ToDouble(lblTotal.Text));
+
+            foreach (Basket item in vBasket)
+            {
+                Basket.UpdateBasketWithOrder(item.Id, orderId);
+                OrderDetail.InsertOrderDetail(orderId, item.ProductGroup.Id, item.Product.Id, item.Product.SalesPrice, item.Product.CurrencyType, item.Quantity, item.Discount, item.Total);
+            }
+
+            LoadBasket();
+
+            MessageBox.Show("Hesap kapatılmıştır. ", "Hesap Kapatma", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void btnIncrement_Click_1(object sender, EventArgs e)
+        {
+            if (dgvProducts.CurrentCell.RowIndex >= 0)
+            {
+                int index = dgvProducts.CurrentCell.RowIndex;
+                Basket.Update(gTable.Id, vBasket[index].Product.Id, vBasket[index].Quantity + 0.5);
+                LoadBasket();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen ürün seçiniz. ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnDecrement_Click(object sender, EventArgs e)
+        {
+            if (dgvProducts.CurrentCell.RowIndex >= 0)
+            {
+                int index = dgvProducts.CurrentCell.RowIndex;
+                Basket.Update(gTable.Id, vBasket[index].Product.Id, vBasket[index].Quantity - 0.5);
+                LoadBasket();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen ürün seçiniz. ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnGift_Click(object sender, EventArgs e)
+        {
+            if (dgvProducts.CurrentCell.RowIndex >= 0)
+            {
+                int index = dgvProducts.CurrentCell.RowIndex;
+                Basket.Update(gTable.Id, vBasket[index].Product.Id, vBasket[index].Quantity,100);
+                LoadBasket();
+            }
+            else
+            {
+                MessageBox.Show("Lütfen ürün seçiniz. ", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnCancelSlip_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Adisyonu iptal etmek istediğinize emin misiniz ? ", "Adisyon İptal", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                Basket.DeleteBasket(gTable.Id);
+                LoadBasket();
+            }
+        }
+
+        private void dgvProducts_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Basket.Update(gTable.Id, vBasket[e.RowIndex].Product.Id, Convert.ToDouble(dgvProducts.Rows[e.RowIndex].Cells[2].Value), Convert.ToDouble(dgvProducts.Rows[e.RowIndex].Cells[3].Value));
+            LoadBasket();
+        }
+
+        
+
+        private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0)
+            {
+                 DialogResult dialogResult = MessageBox.Show("Silmek istediğinize emin misiniz ? ", "Sil", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                 if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                 {
+                     Basket.DeleteBasketItem(vBasket[e.RowIndex].Id, gTable.Id);
+                     LoadBasket();
+                 }
+            }
+        }
+
+       
+
+        //private void MenuOpenPO_Click(object sender, MouseEventArgs e)
+        //{
+        //    Basket.DeleteBasketItem(vBasket[currentMouseOverRow].Id, gTable.Id);
+        //}
 
     }
 

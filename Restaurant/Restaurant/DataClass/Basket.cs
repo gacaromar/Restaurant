@@ -22,12 +22,12 @@ namespace Restaurant.DataClass
         public DateTime RecordDate { get; set; }
         public int Status { get; set; }
         public Chelner Chelner { get; set; }
-        public double Total { get { return Product.SalesPrice * Quantity; } }
+        public double Total { get { return Product.SalesPrice * Quantity * (1- (Discount/100)); } }
         #endregion
 
         #region Methods
 
-        #endregion
+       
 
         public static List<Basket> GetBasketList(int pTableId)
         {
@@ -54,17 +54,34 @@ namespace Restaurant.DataClass
             return vList;
         }
 
-        public static int InsertBasket(int pTableId, int pProductGroupId, int pChelnerId, int pProductId, double pDiscount, int pQuantity)
+        public static int InsertBasket(int pTableId, int pProductGroupId, int pChelnerId, int pProductId, double pDiscount, double pQuantity)
         {
             var dt = DAL.InsertBasket(pTableId, pProductGroupId, pChelnerId, pProductId, pDiscount, pQuantity);
             if (dt.Rows.Count == 0) return -1;
             return Convert.ToInt32(dt.Rows[0][0]);
         }
 
-        public static int Update(int pTableId, int pProductId, double pQuantity)
+        public static int Update(int pTableId, int pProductId, double pQuantity,double pDiscount = 0)
         {
-            return DAL.UpdateBasket(pTableId, pProductId, pQuantity);
+            return DAL.UpdateBasket(pTableId, pProductId, pQuantity, pDiscount);
         }
+
+        public static void UpdateBasketWithOrder(int pId, int pOrderId)
+        {
+             DAL.UpdateBasketWithOrder(pId, pOrderId);
+        }
+
+        public static void DeleteBasket(int pTableId)
+        {
+            DAL.DeleteBasket(pTableId);
+        }
+
+        public static void DeleteBasketItem(int pId,int pTableId)
+        {
+            DAL.DeleteBasketItem(pId, pTableId);
+        }
+
+        #endregion
     }
 
 }
@@ -96,12 +113,12 @@ public partial class DataAccessLayer
         }
     }
 
-    internal int UpdateBasket(int pTableId, int pProductId, double pQuantity)
+    public int UpdateBasket(int pTableId, int pProductId, double pQuantity, double pDiscount)
     {
         try
         {
             UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateBasket,
-                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId, pProductId, pQuantity));
+                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId, pProductId, pQuantity, pDiscount));
             return 1;
         }
         catch (Exception ex)
@@ -109,4 +126,45 @@ public partial class DataAccessLayer
             return -1;
         }
     }
+
+    public void UpdateBasketWithOrder(int pId, int pOrderId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateBasketWithOrder,
+                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId, pOrderId));
+            
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+
+    public void DeleteBasket(int pTableId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.DeleteBasket,
+                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pTableId));
+            
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+    public void DeleteBasketItem(int pId,int pTableId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.DeleteBasketItem,
+                 MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId, pTableId));
+            
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
 }

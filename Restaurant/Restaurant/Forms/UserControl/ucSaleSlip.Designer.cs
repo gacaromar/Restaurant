@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTotal = new System.Windows.Forms.Label();
             this.btnDecrement = new System.Windows.Forms.Button();
             this.btnIncrement = new System.Windows.Forms.Button();
             this.btnSlipPrint = new System.Windows.Forms.Button();
@@ -38,22 +38,22 @@
             this.btnGift = new System.Windows.Forms.Button();
             this.btnCancelSlip = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnAddSaleser = new System.Windows.Forms.Button();
             this.cmbTables = new System.Windows.Forms.ComboBox();
             this.gbGroups = new System.Windows.Forms.GroupBox();
             this.gbProducts = new System.Windows.Forms.GroupBox();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sil = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lblTotal);
             this.panel1.Controls.Add(this.btnDecrement);
             this.panel1.Controls.Add(this.btnIncrement);
             this.panel1.Controls.Add(this.btnSlipPrint);
@@ -69,15 +69,16 @@
             this.panel1.Size = new System.Drawing.Size(310, 480);
             this.panel1.TabIndex = 7;
             // 
-            // label1
+            // lblTotal
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label1.Location = new System.Drawing.Point(156, 444);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 33);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "0.00";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lblTotal.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblTotal.Location = new System.Drawing.Point(156, 444);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(145, 33);
+            this.lblTotal.TabIndex = 16;
+            this.lblTotal.Text = "0.00";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btnDecrement
             // 
@@ -87,6 +88,7 @@
             this.btnDecrement.TabIndex = 9;
             this.btnDecrement.Text = "-0.5";
             this.btnDecrement.UseVisualStyleBackColor = true;
+            this.btnDecrement.Click += new System.EventHandler(this.btnDecrement_Click);
             // 
             // btnIncrement
             // 
@@ -96,6 +98,7 @@
             this.btnIncrement.TabIndex = 10;
             this.btnIncrement.Text = "+0.5";
             this.btnIncrement.UseVisualStyleBackColor = true;
+            this.btnIncrement.Click += new System.EventHandler(this.btnIncrement_Click_1);
             // 
             // btnSlipPrint
             // 
@@ -114,6 +117,7 @@
             this.btnCloseSlip.TabIndex = 12;
             this.btnCloseSlip.Text = "Hesabı Kapat";
             this.btnCloseSlip.UseVisualStyleBackColor = true;
+            this.btnCloseSlip.Click += new System.EventHandler(this.btnCloseSlip_Click);
             // 
             // btnPrintSlipKitchen
             // 
@@ -132,6 +136,7 @@
             this.btnGift.TabIndex = 14;
             this.btnGift.Text = "İkram";
             this.btnGift.UseVisualStyleBackColor = true;
+            this.btnGift.Click += new System.EventHandler(this.btnGift_Click);
             // 
             // btnCancelSlip
             // 
@@ -141,6 +146,7 @@
             this.btnCancelSlip.TabIndex = 15;
             this.btnCancelSlip.Text = "İptal";
             this.btnCancelSlip.UseVisualStyleBackColor = true;
+            this.btnCancelSlip.Click += new System.EventHandler(this.btnCancelSlip_Click);
             // 
             // dgvProducts
             // 
@@ -152,47 +158,16 @@
             this.ProductName,
             this.Price,
             this.Quantity,
-            this.Total,
-            this.Delete});
+            this.Discount,
+            this.Sil});
             this.dgvProducts.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "dgvAutoGeneretaFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dgvProducts.Location = new System.Drawing.Point(5, 36);
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.Size = new System.Drawing.Size(301, 325);
             this.dgvProducts.TabIndex = 8;
+            this.dgvProducts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellContentClick);
+            this.dgvProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellEndEdit);
             this.dgvProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvProducts_CellFormatting);
-            // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "Product.ProductName";
-            this.ProductName.HeaderText = "Ürün";
-            this.ProductName.Name = "ProductName";
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Product.SalesPrice";
-            this.Price.HeaderText = "Fiyatı";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Mik.";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.DataPropertyName = "Total";
-            this.Total.HeaderText = "Toplam";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            this.Delete.DataPropertyName = "Id";
-            this.Delete.HeaderText = "Sil";
-            this.Delete.Name = "Delete";
             // 
             // btnAddSaleser
             // 
@@ -235,6 +210,38 @@
             this.gbProducts.TabStop = false;
             this.gbProducts.Text = "Ürünler";
             // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "Product.ProductName";
+            this.ProductName.HeaderText = "Ürün";
+            this.ProductName.Name = "ProductName";
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Product.SalesPrice";
+            this.Price.HeaderText = "Fiyatı";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Mik.";
+            this.Quantity.Name = "Quantity";
+            // 
+            // Discount
+            // 
+            this.Discount.DataPropertyName = "Discount";
+            this.Discount.HeaderText = "İndirim";
+            this.Discount.Name = "Discount";
+            // 
+            // Sil
+            // 
+            this.Sil.HeaderText = "Sil";
+            this.Sil.Name = "Sil";
+            this.Sil.Text = "Sil";
+            this.Sil.ToolTipText = "Sil";
+            // 
             // ucSaleSlip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -255,7 +262,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Button btnDecrement;
         private System.Windows.Forms.Button btnIncrement;
         private System.Windows.Forms.Button btnSlipPrint;
@@ -271,8 +278,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
-        private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewButtonColumn Sil;
 
     }
 }

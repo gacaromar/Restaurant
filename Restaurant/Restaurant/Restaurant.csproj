@@ -58,6 +58,7 @@
     <Compile Include="DataClass\DataLayer\DataAccess.cs" />
     <Compile Include="DataClass\DataLayer\DataAccessLayer.cs" />
     <Compile Include="DataClass\DataLayer\SpNameCollection.cs" />
+    <Compile Include="DataClass\OrderDetail.cs" />
     <Compile Include="DataClass\Orders.cs" />
     <Compile Include="DataClass\Product.cs" />
     <Compile Include="DataClass\ProductGroup.cs" />

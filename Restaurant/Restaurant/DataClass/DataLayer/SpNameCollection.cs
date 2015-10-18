@@ -52,6 +52,12 @@
     /// </summary>
     public const string UpdateBasket = "Update_Basket";
 
+    public const string UpdateBasketWithOrder = "Update_BasketWithOrder";
+    public const string DeleteBasket = "Delete_Basket";
+    public const string DeleteBasketItem = "Delete_BasketItem";
+
+    public const string InsertOrderDetail = "Insert_OrderDetail";
+
     #endregion
     #region Chelner
     /// <summary>
