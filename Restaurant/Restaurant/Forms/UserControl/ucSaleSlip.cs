@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -7,6 +8,14 @@ using Restaurant.DataClass;
 using Restaurant.Forms.UserControl.Compotents;
 using Restaurant.Helper;
 using System.Drawing;
+using System.Drawing.Printing;
+using System.Globalization;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Restaurant.Properties;
+using Color = System.Drawing.Color;
+using Table = Restaurant.DataClass.Table;
 
 namespace Restaurant.Forms.UserControl
 {
@@ -19,7 +28,7 @@ namespace Restaurant.Forms.UserControl
         private double gDiscount;
         private bool gComeMainForm = false;
         List<Table> tables;
-        double total ;
+        double total;
         public ucSaleSlip(Table pTable)
         {
             InitializeComponent();
@@ -47,14 +56,11 @@ namespace Restaurant.Forms.UserControl
                 }
             }
             gComeMainForm = false;
-
-
-
         }
 
         void LoadGrid(int pTableId)
         {
-             vBasket = Basket.GetBasketList(pTableId);
+            vBasket = Basket.GetBasketList(pTableId);
             if (vBasket.Count == 0)
             {
                 dgvProducts.DataSource = null;
@@ -62,7 +68,7 @@ namespace Restaurant.Forms.UserControl
             }
             gChelner = vBasket[0].Chelner;
             dgvProducts.DataSource = vBasket;
-            gTable = tables.Where(z => z.Id == pTableId).First();// Table.GetTableById(pTableId);
+            gTable = tables.First(z => z.Id == pTableId);// Table.GetTableById(pTableId);
 
             total = vBasket.Sum(t => t.Total);
             lblTotal.Text = total.ToString("N2");
@@ -97,7 +103,7 @@ namespace Restaurant.Forms.UserControl
 
             var vList = dgvProducts.DataSource as List<Basket>;
             var vProduct = ((sender as Button).Parent as ucProductGroup).Product;
-            if (vList == null || vList.Where(l => l.Product.Id == vProduct.Id).Count() == 0)
+            if (vList == null || vList.All(l => l.Product.Id != vProduct.Id))
             {
                 Basket.InsertBasket(gTable.Id, vProduct.ProductGroup.Id, gChelner == null ? -1 : gChelner.Id, vProduct.Id, gDiscount, gQuantity);
             }
@@ -117,7 +123,7 @@ namespace Restaurant.Forms.UserControl
 
         private void LoadBasket()
         {
-             vBasket = Basket.GetBasketList(gTable.Id);
+            vBasket = Basket.GetBasketList(gTable.Id);
             dgvProducts.DataSource = vBasket;
 
             total = vBasket.Sum(t => t.Total);
@@ -249,7 +255,7 @@ namespace Restaurant.Forms.UserControl
             if (dgvProducts.CurrentCell.RowIndex >= 0)
             {
                 int index = dgvProducts.CurrentCell.RowIndex;
-                Basket.Update(gTable.Id, vBasket[index].Product.Id, vBasket[index].Quantity,100);
+                Basket.Update(gTable.Id, vBasket[index].Product.Id, vBasket[index].Quantity, 100);
                 LoadBasket();
             }
             else
@@ -274,7 +280,7 @@ namespace Restaurant.Forms.UserControl
             LoadBasket();
         }
 
-        
+
 
         private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -283,22 +289,270 @@ namespace Restaurant.Forms.UserControl
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
-                 DialogResult dialogResult = MessageBox.Show("Silmek istediğinize emin misiniz ? ", "Sil", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                 if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-                 {
-                     Basket.DeleteBasketItem(vBasket[e.RowIndex].Id, gTable.Id);
-                     LoadBasket();
-                 }
+                DialogResult dialogResult = MessageBox.Show("Silmek istediğinize emin misiniz ? ", "Sil", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Basket.DeleteBasketItem(vBasket[e.RowIndex].Id, gTable.Id);
+                    LoadBasket();
+                }
             }
         }
 
-       
+        private void btnSlipPrint_Click(object sender, EventArgs e)
+        {
+            string sss = DateTime.Now.Millisecond + "Doc1.pdf";
+            string filename = AppDomain.CurrentDomain.BaseDirectory + sss;
+            Document document = new Document(PageSize.A6, 5f, 5f, 10f, 5f);
 
-        //private void MenuOpenPO_Click(object sender, MouseEventArgs e)
-        //{
-        //    Basket.DeleteBasketItem(vBasket[currentMouseOverRow].Id, gTable.Id);
-        //}
+            PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
 
+            #region Header
+
+            iTextSharp.text.Table tblHeader = new iTextSharp.text.Table(2, 6);
+            tblHeader.Padding = 3;
+            tblHeader.BorderWidth = 0;
+            tblHeader.Border = 0;
+            tblHeader.BorderColor = iTextSharp.text.Color.WHITE;
+            tblHeader.Width = 100;
+            tblHeader.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            tblHeader.DefaultCell.BorderWidth = 0;
+            tblHeader.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
+            tblHeader.SetWidths(new[] { 50, 100 });
+            tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 14), 0, 0);
+            tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 1, 0);
+            tblHeader.AddCell(CellCreate(":" + gTable.TableName, Element.ALIGN_LEFT, Element.ALIGN_CENTER), 1, 1);
+            tblHeader.AddCell(CellCreate("Açılış", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 2, 0);
+            tblHeader.AddCell(
+                CellCreate(":" + gTable.RecordDate.ToString("dd.MM.yyyy hh:mm:ss"), Element.ALIGN_LEFT, Element.ALIGN_CENTER),
+                2, 1);
+            tblHeader.AddCell(CellCreate("Adisyon No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 3, 0);
+            tblHeader.AddCell(CellCreate(":" + gTable.Id.ToString(), Element.ALIGN_LEFT, Element.ALIGN_CENTER), 3, 1);
+
+            #endregion
+
+            #region Content
+
+            iTextSharp.text.Table aTableProduct = new iTextSharp.text.Table(4, vBasket.Count + 1);
+            aTableProduct.Padding = 3;
+            aTableProduct.BorderWidth = 0;
+            aTableProduct.Border = 0;
+            aTableProduct.BorderColor = iTextSharp.text.Color.WHITE;
+            aTableProduct.Width = 100;
+            aTableProduct.SetWidths(new[] { 75, 25, 25, 25 });
+            aTableProduct.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            aTableProduct.DefaultCell.BorderWidth = 0;
+            aTableProduct.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
+
+            aTableProduct.AddCell(CellCreate("Ürün", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Mik.", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Fiyat", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Tutar", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+
+            foreach (Basket t in vBasket)
+            {
+                aTableProduct.AddCell(CellCreate(t.Product.ProductName, Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Quantity.ToString(CultureInfo.CurrentCulture), Element.ALIGN_LEFT,
+                    Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Product.SalesPrice.ToString("N2"), Element.ALIGN_LEFT,
+                    Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Total.ToString("N2"), Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+            }
+
+            #endregion
+
+            #region Footer
+
+            iTextSharp.text.Table tblFooter = new iTextSharp.text.Table(2, 3);
+            tblFooter.Padding = 3;
+            tblFooter.BorderWidth = 0;
+            tblFooter.Border = 0;
+            tblFooter.BorderColor = iTextSharp.text.Color.WHITE;
+            tblFooter.Width = 100;
+            tblFooter.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            tblFooter.DefaultCell.BorderWidth = 0;
+            tblFooter.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
+            tblFooter.SetWidths(new[] { 100, 50 });
+            tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 0, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 0,
+                1);
+            tblFooter.AddCell(CellCreate("Genel Toplam", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 1, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 1,
+                1);
+            tblFooter.AddCell(CellCreate("Afiyet Olsun", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 12), 2, 0);
+
+            #endregion
+
+            if (document.IsOpen() == false)
+            {
+                document.Open();
+            }
+
+            Paragraph headerPhrase = new Paragraph("") { Alignment = Element.ALIGN_CENTER };
+            document.Add(tblHeader);
+            document.Add(headerPhrase);
+            document.Add(aTableProduct);
+            document.Add(headerPhrase);
+            document.Add(tblFooter);
+
+            document.Close();
+
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = "print";
+            info.Arguments = "\"" + Settings.Default.GeneralPrinter + "\"";
+            info.FileName = filename;
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+
+            p.WaitForInputIdle();
+            System.Threading.Thread.Sleep(3000);
+            if (false == p.CloseMainWindow())
+            {
+                p.Kill();
+                File.Delete(filename);
+            }
+        }
+
+        private void PdOnPrintPage(object sender, PrintPageEventArgs printPageEventArgs)
+        {
+            string sss = DateTime.Now.Millisecond + "Doc1.pdf";
+            string filename = AppDomain.CurrentDomain.BaseDirectory + sss;
+            Document document = new Document(PageSize.A6, 5f, 5f, 10f, 5f);
+
+            PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
+
+            #region Header
+
+            iTextSharp.text.Table tblHeader = new iTextSharp.text.Table(2, 6);
+            tblHeader.Padding = 3;
+            tblHeader.BorderWidth = 0;
+            tblHeader.Border = 0;
+            tblHeader.BorderColor = iTextSharp.text.Color.WHITE;
+            tblHeader.Width = 100;
+            tblHeader.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            tblHeader.DefaultCell.BorderWidth = 0;
+            tblHeader.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
+            tblHeader.SetWidths(new[] { 50, 100 });
+            tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 14), 0, 0);
+            tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 1, 0);
+            tblHeader.AddCell(CellCreate(":" + gTable.TableName, Element.ALIGN_LEFT, Element.ALIGN_CENTER), 1, 1);
+            tblHeader.AddCell(CellCreate("Açılış", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 2, 0);
+            tblHeader.AddCell(
+                CellCreate(":" + gTable.RecordDate.ToString("dd.MM.yyyy hh:mm:ss"), Element.ALIGN_LEFT, Element.ALIGN_CENTER),
+                2, 1);
+            tblHeader.AddCell(CellCreate("Adisyon No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 3, 0);
+            tblHeader.AddCell(CellCreate(":" + gTable.Id.ToString(), Element.ALIGN_LEFT, Element.ALIGN_CENTER), 3, 1);
+
+            #endregion
+
+            #region Content
+
+            iTextSharp.text.Table aTableProduct = new iTextSharp.text.Table(4, vBasket.Count + 1);
+            aTableProduct.Padding = 3;
+            aTableProduct.BorderWidth = 0;
+            aTableProduct.Border = 0;
+            aTableProduct.BorderColor = iTextSharp.text.Color.WHITE;
+            aTableProduct.Width = 100;
+            aTableProduct.SetWidths(new[] { 75, 25, 25, 25 });
+            aTableProduct.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            aTableProduct.DefaultCell.BorderWidth = 0;
+            aTableProduct.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
+
+            aTableProduct.AddCell(CellCreate("Ürün", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Mik.", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Fiyat", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Tutar", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+
+            foreach (Basket t in vBasket)
+            {
+                aTableProduct.AddCell(CellCreate(t.Product.ProductName, Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Quantity.ToString(CultureInfo.CurrentCulture), Element.ALIGN_LEFT,
+                    Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Product.SalesPrice.ToString("N2"), Element.ALIGN_LEFT,
+                    Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Total.ToString("N2"), Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+            }
+
+            #endregion
+
+            #region Footer
+
+            iTextSharp.text.Table tblFooter = new iTextSharp.text.Table(2, 3);
+            tblFooter.Padding = 3;
+            tblFooter.BorderWidth = 0;
+            tblFooter.Border = 0;
+            tblFooter.BorderColor = iTextSharp.text.Color.WHITE;
+            tblFooter.Width = 100;
+            tblFooter.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
+            tblFooter.DefaultCell.BorderWidth = 0;
+            tblFooter.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
+            tblFooter.SetWidths(new[] { 100, 50 });
+            tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 0, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 0,
+                1);
+            tblFooter.AddCell(CellCreate("Genel Toplam", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 1, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 1,
+                1);
+            tblFooter.AddCell(CellCreate("Afiyet Olsun", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 12), 2, 0);
+
+            #endregion
+
+            if (document.IsOpen() == false)
+            {
+                document.Open();
+            }
+
+            Paragraph headerPhrase = new Paragraph("") { Alignment = Element.ALIGN_CENTER };
+            document.Add(tblHeader);
+            document.Add(headerPhrase);
+            document.Add(aTableProduct);
+            document.Add(headerPhrase);
+            document.Add(tblFooter);
+
+            document.Close();
+
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = "print";
+            info.Arguments = "\"" + Settings.Default.KitchenPrinter + "\"";
+            info.FileName = filename;
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+
+            p.WaitForInputIdle();
+            System.Threading.Thread.Sleep(3000);
+            if (false == p.CloseMainWindow())
+            {
+                p.Kill();
+                File.Delete(filename);
+            }
+        }
+
+        private void btnPrintSlipKitchen_Click(object sender, EventArgs e)
+        {
+        }
+
+        private Cell CellCreate(string text, int vAlignment = 1, int hAlignment = 0, int colspan = 1, int type = 0, int font = 10)
+        {
+            BaseFont trArial = BaseFont.CreateFont(@"C:\WINDOWS\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+            iTextSharp.text.Font newFont = new iTextSharp.text.Font(trArial, 10, iTextSharp.text.Font.NORMAL);
+
+            if (type == 0) newFont = new iTextSharp.text.Font(trArial, font, iTextSharp.text.Font.NORMAL);
+            else newFont = new iTextSharp.text.Font(trArial, font, iTextSharp.text.Font.BOLD);
+
+            Cell cell = new Cell();
+            cell.Add(new Phrase(text, newFont));
+            cell.HorizontalAlignment = vAlignment;
+            cell.VerticalAlignment = hAlignment;
+            cell.Colspan = colspan;
+
+            return cell;
+        }
     }
-
 }

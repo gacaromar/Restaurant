@@ -34,5 +34,29 @@ namespace Restaurant.Properties {
                 this["dgvAutoGeneretaFalse"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string KitchenPrinter {
+            get {
+                return ((string)(this["KitchenPrinter"]));
+            }
+            set {
+                this["KitchenPrinter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string GeneralPrinter {
+            get {
+                return ((string)(this["GeneralPrinter"]));
+            }
+            set {
+                this["GeneralPrinter"] = value;
+            }
+        }
     }
 }

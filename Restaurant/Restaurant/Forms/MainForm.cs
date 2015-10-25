@@ -38,18 +38,18 @@ namespace Restaurant.Forms
                 MessageBox.Show("Lütfen Masa Seçiniz", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-           
-            
+
+
             var vucTable = ((sender as PictureBox).Parent as ucTable);
-             vTable = new Table
-            {
-                Active = vucTable.TableActive,
-                TableName = vucTable.TableName,
-                Id = vucTable.TableID
-            };
-           //SetAdisyon(vTable);
+            vTable = new Table
+           {
+               Active = vucTable.TableActive,
+               TableName = vucTable.TableName,
+               Id = vucTable.TableID
+           };
+            //SetAdisyon(vTable);
             tabControl1.SelectedIndex = 1;
-            
+
         }
 
 
@@ -82,6 +82,13 @@ namespace Restaurant.Forms
                 default:
                     break;
             }
+        }
+
+        private void tsmiPrinterSettings_Click(object sender, EventArgs e)
+        {
+            var ucPrinter = new ucPrinterSettings();
+            var frm = GlobalHelper.OpenShowForm(ucPrinter, FormBorderStyle.None, FormStartPosition.CenterScreen);
+            GlobalHelper.FormDispose(frm);
         }
     }
 }

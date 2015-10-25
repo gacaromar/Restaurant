@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>DLL\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.1.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\MySql.Data.dll</HintPath>
@@ -99,6 +102,12 @@
     <Compile Include="Forms\UserControl\ucLoading.Designer.cs">
       <DependentUpon>ucLoading.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UserControl\ucPrinterSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControl\ucPrinterSettings.Designer.cs">
+      <DependentUpon>ucPrinterSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UserControl\ucProductGroups.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,6 +166,9 @@
     <EmbeddedResource Include="Forms\UserControl\ucLoading.resx">
       <DependentUpon>ucLoading.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControl\ucPrinterSettings.resx">
+      <DependentUpon>ucPrinterSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControl\ucProductGroups.resx">
       <DependentUpon>ucProductGroups.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,23 +208,18 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Bilgiler\12047425_10206386218946880_280640009_n.jpg" />
-    <Content Include="Bilgiler\12053321_10206386218906879_480969045_n.jpg" />
-    <Content Include="Bilgiler\12067366_10206386218786876_1405315765_n.jpg" />
-    <Content Include="Bilgiler\12067887_10206386218826877_1075479144_n.jpg" />
-    <Content Include="Bilgiler\12071401_10206386219026882_929951409_n.jpg" />
-    <Content Include="Bilgiler\12071729_10206386218986881_2079178720_n.jpg" />
-    <Content Include="Bilgiler\12076863_10206386219066883_1996290438_n.jpg" />
-    <Content Include="Bilgiler\12081556_10206386218866878_968718376_n.jpg" />
-    <Content Include="Bilgiler\12084018_10206386218746875_316306989_n.jpg" />
-    <Content Include="Bilgiler\12087374_10206386219106884_1942135769_n.jpg" />
+    <Folder Include="Bilgiler\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DLL\MySql.Data.dll" />
     <Content Include="DLL\UtilityLibrary.dll" />
     <Content Include="Images\ActiveTable.png" />
     <Content Include="Images\PassiveTable.png" />
     <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

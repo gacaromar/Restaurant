@@ -2,7 +2,7 @@
 
 namespace Restaurant.Helper
 {
-    public class GlobalHelper
+    public static class GlobalHelper
     {
         public static Form OpenShowForm(Control pControl, FormBorderStyle pFormBorderStyle, FormStartPosition pFormStartPosition)
         {
