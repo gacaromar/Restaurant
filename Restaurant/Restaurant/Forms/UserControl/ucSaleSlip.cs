@@ -280,8 +280,6 @@ namespace Restaurant.Forms.UserControl
             LoadBasket();
         }
 
-
-
         private void dgvProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
@@ -412,11 +410,16 @@ namespace Restaurant.Forms.UserControl
             if (false == p.CloseMainWindow())
             {
                 p.Kill();
-                File.Delete(filename);
+                //File.Delete(filename);
             }
         }
 
         private void PdOnPrintPage(object sender, PrintPageEventArgs printPageEventArgs)
+        {
+            
+        }
+
+        private void btnPrintSlipKitchen_Click(object sender, EventArgs e)
         {
             string sss = DateTime.Now.Millisecond + "Doc1.pdf";
             string filename = AppDomain.CurrentDomain.BaseDirectory + sss;
@@ -530,12 +533,8 @@ namespace Restaurant.Forms.UserControl
             if (false == p.CloseMainWindow())
             {
                 p.Kill();
-                File.Delete(filename);
+                //File.Delete(filename);
             }
-        }
-
-        private void btnPrintSlipKitchen_Click(object sender, EventArgs e)
-        {
         }
 
         private Cell CellCreate(string text, int vAlignment = 1, int hAlignment = 0, int colspan = 1, int type = 0, int font = 10)
