@@ -11,6 +11,7 @@ namespace Restaurant.Forms
         {
             InitializeComponent();
             LoadTables();
+            cmbCurrency.SelectedIndex = 0;
         }
         List<Table> list;
         List<ProductGroup> listProductGroup;
@@ -63,12 +64,12 @@ namespace Restaurant.Forms
                 MessageBox.Show("Lütfen ürün grubu giriniz", "Dikkat", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         #endregion
 
         #region LoadFunctions
 
-        
+
 
         private void LoadTables()
         {
@@ -87,7 +88,7 @@ namespace Restaurant.Forms
             ListProduct = Product.GetProductByAll();
             dtProduct.DataSource = ListProduct;
         }
-        
+
         #endregion
 
 
@@ -115,8 +116,10 @@ namespace Restaurant.Forms
 
         private void dtProductGroup_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            var a = dtProductGroup.Rows[e.RowIndex].DataBoundItem as ProductGroup;
             string value = dtProductGroup.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-            int Id = Convert.ToInt32(dtProductGroup.Rows[e.RowIndex].Cells[0].Value);
+            int Id = a.Id;
+            //int Id = Convert.ToInt32(dtProductGroup.Rows[e.RowIndex].Cells[0].Value);
             DialogResult dialogResult = MessageBox.Show("Güncellemek istediğinize emin misiniz ? ", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == System.Windows.Forms.DialogResult.Yes)
             {
@@ -226,7 +229,7 @@ namespace Restaurant.Forms
                 }
             }
         }
-        
+
         #endregion
         private void tb1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -241,9 +244,11 @@ namespace Restaurant.Forms
                 case 2:
                     LoadProduct();
                     cmbProductGroup.DataSource = ProductGroup.GetAllProductGroups();
-                    cmbCurrency.SelectedIndex =0;
+                    cmbCurrency.SelectedIndex = 0;
                     break;
-
+                case 3:
+                    LoadChelner();
+                    break;
                 default:
                     break;
             }
@@ -251,17 +256,107 @@ namespace Restaurant.Forms
 
         private void btnProductSave_Click(object sender, EventArgs e)
         {
-
+            Product.InsertProduct(Convert.ToInt32(cmbProductGroup.SelectedValue), tbProductName.Text.Trim(),
+                Convert.ToDouble(tbPrice.Text.Trim()), cmbCurrency.SelectedItem.ToString());
+            LoadProduct();
         }
 
-       
+        private void btnSaveChelner_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbChelnerName.Text.Trim()))
+            {
+                Chelner.Insert(tbChelnerName.Text.Trim());
+                LoadChelner();
+            }
+        }
 
-       
+        private void LoadChelner()
+        {
+            dtChelner.DataSource = Chelner.GetList();
+        }
 
-        
+        private void dtProduct_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var a = dtProduct.Rows[e.RowIndex].DataBoundItem as Product;
+            string value = dtProduct.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            double price = Convert.ToDouble(dtProduct.Rows[e.RowIndex].Cells["SalesPrice"].Value.ToString());
+            int Id = a.Id;
+            //int Id = Convert.ToInt32(dtProduct.Rows[e.RowIndex].Cells[0].Value);
+            DialogResult dialogResult = MessageBox.Show("Güncellemek istediğinize emin misiniz ? ", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+            {
+                Product t = new Product()
+                {
+                    Id = Id,
+                    ProductName = value,
+                    SalesPrice = price
+                };
+                t.Update();
+                MessageBox.Show("Masa güncelleme işleminiz gerçekleştirilmiştir.", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                LoadProduct();
+            }
+        }
 
-        
+        private void dtChelner_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            var a = dtChelner.Rows[e.RowIndex].DataBoundItem as Chelner;
+            string value = dtChelner.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            int Id = a.Id;
+            //int Id = Convert.ToInt32(dtProduct.Rows[e.RowIndex].Cells[0].Value);
+            DialogResult dialogResult = MessageBox.Show("Güncellemek istediğinize emin misiniz ? ", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Chelner t = new Chelner()
+                {
+                    Id = Id,
+                    ChelnerName = value
+                };
+                t.Update();
+                MessageBox.Show("Masa güncelleme işleminiz gerçekleştirilmiştir.", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                LoadChelner();
+            }
+        }
 
-        
+        private void dtProduct_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 46)
+            {
+                DialogResult dialogResult = MessageBox.Show("Silmek istediğinize emin misiniz ? ", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var a = dtProduct.SelectedRows[0].DataBoundItem as Product;
+                    Product t = new Product()
+                    {
+                        Id = a.Id
+                    };
+                    t.Delete();
+                }
+                LoadProduct();
+            }
+        }
+
+        private void dtChelner_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 46)
+            {
+                DialogResult dialogResult = MessageBox.Show("Silmek istediğinize emin misiniz ? ", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var a = dtChelner.SelectedRows[0].DataBoundItem as Chelner;
+                    Chelner t = new Chelner
+                    {
+                        Id = a.Id
+                    };
+                    t.Delete();
+                }
+                LoadChelner();
+            }
+        }
     }
 }

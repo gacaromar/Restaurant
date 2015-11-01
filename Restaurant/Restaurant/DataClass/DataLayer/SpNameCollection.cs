@@ -23,7 +23,18 @@
 
     public static string GetProductByProductGroupId = "GetList_ProductByProductGroupId";
     public static string GetProductByAll = "GetList_ProductByAll";
-
+    /// <summary>
+    /// Insert_Product
+    /// </summary>
+    public const string InsertProduct = "Insert_Product";
+    /// <summary>
+    /// Update_Product
+    /// </summary>
+    public const string UpdateProduct = "Update_Product";
+    /// <summary>
+    /// Delete_Product
+    /// </summary>
+    public const string DeleteProduct = "Delete_Product";
     #endregion
 
     #region Order
@@ -64,6 +75,28 @@
     /// GetList_ChelnerList 
     /// </summary>
     public const string GetChelnerList = "GetList_Chelner";
+    /// <summary>
+    /// Insert_Chelner
+    /// </summary>
+    public const string InsertChelner = "Insert_Chelner";
+    /// <summary>
+    /// Update_Chelner
+    /// </summary>
+    public const string UpdateChelner = "Update_Chelner";
+    /// <summary>
+    /// Delete_Chelner
+    /// </summary>
+    public const string DeleteChelner = "Delete_Chelner";
+    #endregion
+    #region Settings
+    /// <summary>
+    /// GetList_Printers
+    /// </summary>
+    public const string GetListPrinters = "GetList_Printers";
+    /// <summary>
+    /// Insert_Printer
+    /// </summary>
+    public const string InsertPrinter = "Insert_Printer";
 
     #endregion
 }

@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ayarlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kayıtlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raporlarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPrinterSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tsmiPrinterSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -65,21 +66,28 @@
             // kayıtlarToolStripMenuItem
             // 
             this.kayıtlarToolStripMenuItem.Name = "kayıtlarToolStripMenuItem";
-            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kayıtlarToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.kayıtlarToolStripMenuItem.Text = "Tanımlamalar";
             this.kayıtlarToolStripMenuItem.Click += new System.EventHandler(this.kayıtlarToolStripMenuItem_Click);
             // 
             // raporlarToolStripMenuItem
             // 
             this.raporlarToolStripMenuItem.Name = "raporlarToolStripMenuItem";
-            this.raporlarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.raporlarToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.raporlarToolStripMenuItem.Text = "Raporlar";
             // 
             // çıkışToolStripMenuItem
             // 
             this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
-            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
+            // 
+            // tsmiPrinterSettings
+            // 
+            this.tsmiPrinterSettings.Name = "tsmiPrinterSettings";
+            this.tsmiPrinterSettings.Size = new System.Drawing.Size(147, 22);
+            this.tsmiPrinterSettings.Text = "Yazıcı";
+            this.tsmiPrinterSettings.Click += new System.EventHandler(this.tsmiPrinterSettings_Click);
             // 
             // tabControl1
             // 
@@ -113,13 +121,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Adisyon";
             // 
-            // tsmiPrinterSettings
-            // 
-            this.tsmiPrinterSettings.Name = "tsmiPrinterSettings";
-            this.tsmiPrinterSettings.Size = new System.Drawing.Size(152, 22);
-            this.tsmiPrinterSettings.Text = "Yazıcı";
-            this.tsmiPrinterSettings.Click += new System.EventHandler(this.tsmiPrinterSettings_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +128,7 @@
             this.ClientSize = new System.Drawing.Size(899, 502);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Cafe Mola";

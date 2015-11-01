@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using Utilities;
 
 namespace Restaurant.DataClass
@@ -54,11 +52,11 @@ namespace Restaurant.DataClass
             return DAL.DeleteProductGroup(Id);
         }
 
-        
+
         #endregion
 
     }
-   
+
 }
 public partial class DataAccessLayer
 {

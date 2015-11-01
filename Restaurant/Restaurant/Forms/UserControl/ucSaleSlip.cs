@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
+using System.Runtime.InteropServices;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Restaurant.Properties;
@@ -29,6 +30,8 @@ namespace Restaurant.Forms.UserControl
         private bool gComeMainForm = false;
         List<Table> tables;
         double total;
+
+        private string FileContents;
         public ucSaleSlip(Table pTable)
         {
             InitializeComponent();
@@ -300,14 +303,14 @@ namespace Restaurant.Forms.UserControl
         {
             string sss = DateTime.Now.Millisecond + "Doc1.pdf";
             string filename = AppDomain.CurrentDomain.BaseDirectory + sss;
-            Document document = new Document(PageSize.A6, 5f, 5f, 10f, 5f);
+            Document document = new Document(new iTextSharp.text.Rectangle(155f, 219f), 1f, 1f, 2f, 1f);
 
             PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
 
             #region Header
 
             iTextSharp.text.Table tblHeader = new iTextSharp.text.Table(2, 6);
-            tblHeader.Padding = 3;
+            tblHeader.Padding = 0;
             tblHeader.BorderWidth = 0;
             tblHeader.Border = 0;
             tblHeader.BorderColor = iTextSharp.text.Color.WHITE;
@@ -315,7 +318,7 @@ namespace Restaurant.Forms.UserControl
             tblHeader.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             tblHeader.DefaultCell.BorderWidth = 0;
             tblHeader.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
-            tblHeader.SetWidths(new[] { 50, 100 });
+            tblHeader.SetWidths(new[] { 45, 100 });
             tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 14), 0, 0);
             tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 1, 0);
             tblHeader.AddCell(CellCreate(":" + gTable.TableName, Element.ALIGN_LEFT, Element.ALIGN_CENTER), 1, 1);
@@ -331,12 +334,12 @@ namespace Restaurant.Forms.UserControl
             #region Content
 
             iTextSharp.text.Table aTableProduct = new iTextSharp.text.Table(4, vBasket.Count + 1);
-            aTableProduct.Padding = 3;
+            aTableProduct.Padding = 0;
             aTableProduct.BorderWidth = 0;
             aTableProduct.Border = 0;
             aTableProduct.BorderColor = iTextSharp.text.Color.WHITE;
             aTableProduct.Width = 100;
-            aTableProduct.SetWidths(new[] { 75, 25, 25, 25 });
+            aTableProduct.SetWidths(new[] { 70, 25, 25, 25 });
             aTableProduct.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             aTableProduct.DefaultCell.BorderWidth = 0;
             aTableProduct.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
@@ -361,7 +364,7 @@ namespace Restaurant.Forms.UserControl
             #region Footer
 
             iTextSharp.text.Table tblFooter = new iTextSharp.text.Table(2, 3);
-            tblFooter.Padding = 3;
+            tblFooter.Padding = 0;
             tblFooter.BorderWidth = 0;
             tblFooter.Border = 0;
             tblFooter.BorderColor = iTextSharp.text.Color.WHITE;
@@ -369,7 +372,7 @@ namespace Restaurant.Forms.UserControl
             tblFooter.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             tblFooter.DefaultCell.BorderWidth = 0;
             tblFooter.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
-            tblFooter.SetWidths(new[] { 100, 50 });
+            tblFooter.SetWidths(new[] { 100, 45 });
             tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 0, 0);
             tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 0,
                 1);
@@ -393,10 +396,35 @@ namespace Restaurant.Forms.UserControl
             document.Add(tblFooter);
 
             document.Close();
+            var vList = MySettings.GetListPrinter();
+            //pdDoc.PrinterSettings.PrinterName = vList[0].Value;
+            //FileInfo file_into = new FileInfo(filename);
+            //string short_name = file_into.Name;
 
+            //// Set the PrintDocument's name for use by the printer queue.
+            //pdDoc.DocumentName = short_name;
+
+            //// Read the file's contents.
+            //try
+            //{
+            //    FileContents = File.ReadAllText(filename).Trim();
+            //    pdDoc.PrintPage += pdocTextFile_PrintPage;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Error reading file " + filename +
+            //        ".\n" + ex.Message);
+            //    return;
+            //}
+
+            //// Print.
+            //pdDoc.Print();
+
+            //return;
+
+            myPrinters.SetDefaultPrinter(vList[0].Value);
             ProcessStartInfo info = new ProcessStartInfo();
             info.Verb = "print";
-            info.Arguments = "\"" + Settings.Default.GeneralPrinter + "\"";
             info.FileName = filename;
             info.CreateNoWindow = true;
             info.WindowStyle = ProcessWindowStyle.Hidden;
@@ -406,31 +434,32 @@ namespace Restaurant.Forms.UserControl
             p.Start();
 
             p.WaitForInputIdle();
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(10000);
             if (false == p.CloseMainWindow())
             {
                 p.Kill();
                 //File.Delete(filename);
             }
         }
-
-        private void PdOnPrintPage(object sender, PrintPageEventArgs printPageEventArgs)
+        public static class myPrinters
         {
-            
+            [DllImport("winspool.drv", CharSet = CharSet.Auto, SetLastError = true)]
+            public static extern bool SetDefaultPrinter(string Name);
+
         }
 
         private void btnPrintSlipKitchen_Click(object sender, EventArgs e)
         {
             string sss = DateTime.Now.Millisecond + "Doc1.pdf";
             string filename = AppDomain.CurrentDomain.BaseDirectory + sss;
-            Document document = new Document(PageSize.A6, 5f, 5f, 10f, 5f);
+            Document document = new Document(new iTextSharp.text.Rectangle(155f, 219f), 1f, 1f, 2f, 1f);
 
             PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
 
             #region Header
 
             iTextSharp.text.Table tblHeader = new iTextSharp.text.Table(2, 6);
-            tblHeader.Padding = 3;
+            tblHeader.Padding = 0;
             tblHeader.BorderWidth = 0;
             tblHeader.Border = 0;
             tblHeader.BorderColor = iTextSharp.text.Color.WHITE;
@@ -438,7 +467,7 @@ namespace Restaurant.Forms.UserControl
             tblHeader.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             tblHeader.DefaultCell.BorderWidth = 0;
             tblHeader.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
-            tblHeader.SetWidths(new[] { 50, 100 });
+            tblHeader.SetWidths(new[] { 45, 100 });
             tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 14), 0, 0);
             tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 1, 0);
             tblHeader.AddCell(CellCreate(":" + gTable.TableName, Element.ALIGN_LEFT, Element.ALIGN_CENTER), 1, 1);
@@ -454,12 +483,12 @@ namespace Restaurant.Forms.UserControl
             #region Content
 
             iTextSharp.text.Table aTableProduct = new iTextSharp.text.Table(4, vBasket.Count + 1);
-            aTableProduct.Padding = 3;
+            aTableProduct.Padding = 0;
             aTableProduct.BorderWidth = 0;
             aTableProduct.Border = 0;
             aTableProduct.BorderColor = iTextSharp.text.Color.WHITE;
             aTableProduct.Width = 100;
-            aTableProduct.SetWidths(new[] { 75, 25, 25, 25 });
+            aTableProduct.SetWidths(new[] { 70, 25, 25, 25 });
             aTableProduct.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             aTableProduct.DefaultCell.BorderWidth = 0;
             aTableProduct.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
@@ -484,7 +513,7 @@ namespace Restaurant.Forms.UserControl
             #region Footer
 
             iTextSharp.text.Table tblFooter = new iTextSharp.text.Table(2, 3);
-            tblFooter.Padding = 3;
+            tblFooter.Padding = 0;
             tblFooter.BorderWidth = 0;
             tblFooter.Border = 0;
             tblFooter.BorderColor = iTextSharp.text.Color.WHITE;
@@ -492,7 +521,7 @@ namespace Restaurant.Forms.UserControl
             tblFooter.DefaultCell.Border = iTextSharp.text.Rectangle.NO_BORDER;
             tblFooter.DefaultCell.BorderWidth = 0;
             tblFooter.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
-            tblFooter.SetWidths(new[] { 100, 50 });
+            tblFooter.SetWidths(new[] { 100, 45 });
             tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 0, 0);
             tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 0,
                 1);
@@ -516,10 +545,10 @@ namespace Restaurant.Forms.UserControl
             document.Add(tblFooter);
 
             document.Close();
-
+            var vList = MySettings.GetListPrinter();
+            myPrinters.SetDefaultPrinter(vList[1].Value);
             ProcessStartInfo info = new ProcessStartInfo();
             info.Verb = "print";
-            info.Arguments = "\"" + Settings.Default.KitchenPrinter + "\"";
             info.FileName = filename;
             info.CreateNoWindow = true;
             info.WindowStyle = ProcessWindowStyle.Hidden;

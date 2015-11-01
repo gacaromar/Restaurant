@@ -38,15 +38,16 @@
             this.btnGift = new System.Windows.Forms.Button();
             this.btnCancelSlip = new System.Windows.Forms.Button();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
+            this.btnAddSaleser = new System.Windows.Forms.Button();
+            this.cmbTables = new System.Windows.Forms.ComboBox();
+            this.gbGroups = new System.Windows.Forms.GroupBox();
+            this.gbProducts = new System.Windows.Forms.GroupBox();
+            this.pdDoc = new System.Drawing.Printing.PrintDocument();
             this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sil = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnAddSaleser = new System.Windows.Forms.Button();
-            this.cmbTables = new System.Windows.Forms.ComboBox();
-            this.gbGroups = new System.Windows.Forms.GroupBox();
-            this.gbProducts = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.SuspendLayout();
@@ -171,38 +172,6 @@
             this.dgvProducts.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellEndEdit);
             this.dgvProducts.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvProducts_CellFormatting);
             // 
-            // ProductName
-            // 
-            this.ProductName.DataPropertyName = "Product.ProductName";
-            this.ProductName.HeaderText = "Ürün";
-            this.ProductName.Name = "ProductName";
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Product.SalesPrice";
-            this.Price.HeaderText = "Fiyatı";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Mik.";
-            this.Quantity.Name = "Quantity";
-            // 
-            // Discount
-            // 
-            this.Discount.DataPropertyName = "Discount";
-            this.Discount.HeaderText = "İndirim";
-            this.Discount.Name = "Discount";
-            // 
-            // Sil
-            // 
-            this.Sil.HeaderText = "Sil";
-            this.Sil.Name = "Sil";
-            this.Sil.Text = "Sil";
-            this.Sil.ToolTipText = "Sil";
-            // 
             // btnAddSaleser
             // 
             this.btnAddSaleser.Location = new System.Drawing.Point(173, 4);
@@ -244,6 +213,39 @@
             this.gbProducts.TabStop = false;
             this.gbProducts.Text = "Ürünler";
             // 
+            // ProductName
+            // 
+            this.ProductName.DataPropertyName = "Product.ProductName";
+            this.ProductName.HeaderText = "Ürün";
+            this.ProductName.Name = "ProductName";
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Product.SalesPrice";
+            this.Price.HeaderText = "Fiyatı";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Mik.";
+            this.Quantity.Name = "Quantity";
+            // 
+            // Discount
+            // 
+            this.Discount.DataPropertyName = "Discount";
+            this.Discount.HeaderText = "İndirim";
+            this.Discount.Name = "Discount";
+            // 
+            // Sil
+            // 
+            this.Sil.HeaderText = "Sil";
+            this.Sil.Name = "Sil";
+            this.Sil.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Sil.Text = "Sil";
+            this.Sil.ToolTipText = "Sil";
+            // 
             // ucSaleSlip
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 16F);
@@ -277,6 +279,7 @@
         private System.Windows.Forms.ComboBox cmbTables;
         private System.Windows.Forms.GroupBox gbGroups;
         private System.Windows.Forms.GroupBox gbProducts;
+        private System.Drawing.Printing.PrintDocument pdDoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;

@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateForm));
             this.tb1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dtTables = new System.Windows.Forms.DataGridView();
-            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSaveTable = new System.Windows.Forms.Button();
             this.tbTableName = new System.Windows.Forms.TextBox();
@@ -46,27 +46,29 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dtProduct = new System.Windows.Forms.DataGridView();
-            this.ProductGroupNameForProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CurrencyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tbPrice = new System.Windows.Forms.NumericUpDown();
             this.cmbCurrency = new System.Windows.Forms.ComboBox();
             this.cmbProductGroup = new System.Windows.Forms.ComboBox();
             this.btnProductSave = new System.Windows.Forms.Button();
             this.tbProductName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dtChelner = new System.Windows.Forms.DataGridView();
-            this.ChelnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnSaveChelner = new System.Windows.Forms.Button();
             this.tbChelnerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbPrice = new System.Windows.Forms.NumericUpDown();
+            this.ProductGroupNameForProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalesPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CurrencyType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TableName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChelnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tb1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,10 +80,10 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtProduct)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPrice)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // tb1
@@ -124,10 +126,13 @@
             // 
             // dtTables
             // 
+            this.dtTables.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.dgvAutoGeneretaFalse;
             this.dtTables.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.dtTables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtTables.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.TableName});
+            this.dtTables.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "dgvAutoGeneretaFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtTables.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtTables.Location = new System.Drawing.Point(3, 16);
             this.dtTables.MultiSelect = false;
@@ -138,13 +143,6 @@
             this.dtTables.TabIndex = 0;
             this.dtTables.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtTables_CellEndEdit);
             this.dtTables.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtTables_KeyDown);
-            // 
-            // TableName
-            // 
-            this.TableName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TableName.DataPropertyName = "TableName";
-            this.TableName.HeaderText = "Masa Adı";
-            this.TableName.Name = "TableName";
             // 
             // groupBox1
             // 
@@ -209,6 +207,7 @@
             this.dtProductGroup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtProductGroup.Location = new System.Drawing.Point(3, 121);
             this.dtProductGroup.Name = "dtProductGroup";
+            this.dtProductGroup.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtProductGroup.Size = new System.Drawing.Size(864, 258);
             this.dtProductGroup.TabIndex = 1;
             this.dtProductGroup.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtProductGroup_CellEndEdit);
@@ -287,41 +286,11 @@
             this.dtProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtProduct.Location = new System.Drawing.Point(3, 140);
             this.dtProduct.Name = "dtProduct";
+            this.dtProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtProduct.Size = new System.Drawing.Size(864, 239);
             this.dtProduct.TabIndex = 3;
-            // 
-            // ProductGroupNameForProduct
-            // 
-            this.ProductGroupNameForProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ProductGroupNameForProduct.DataPropertyName = "ProductGroupNameForProduct";
-            this.ProductGroupNameForProduct.FillWeight = 200F;
-            this.ProductGroupNameForProduct.HeaderText = "Ürün Grubu Adı";
-            this.ProductGroupNameForProduct.Name = "ProductGroupNameForProduct";
-            this.ProductGroupNameForProduct.ReadOnly = true;
-            // 
-            // ProductName
-            // 
-            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ProductName.DataPropertyName = "ProductName";
-            this.ProductName.HeaderText = "Ürün Adı";
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            // 
-            // SalesPrice
-            // 
-            this.SalesPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SalesPrice.DataPropertyName = "SalesPrice";
-            this.SalesPrice.HeaderText = "Ürün Fiyatı";
-            this.SalesPrice.Name = "SalesPrice";
-            this.SalesPrice.ReadOnly = true;
-            // 
-            // CurrencyType
-            // 
-            this.CurrencyType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CurrencyType.DataPropertyName = "CurrencyType";
-            this.CurrencyType.HeaderText = "Döviz Tipi";
-            this.CurrencyType.Name = "CurrencyType";
-            this.CurrencyType.ReadOnly = true;
+            this.dtProduct.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtProduct_CellEndEdit);
+            this.dtProduct.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtProduct_KeyDown);
             // 
             // groupBox4
             // 
@@ -341,6 +310,15 @@
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Ürün Ekle";
+            // 
+            // tbPrice
+            // 
+            this.tbPrice.DecimalPlaces = 2;
+            this.tbPrice.Location = new System.Drawing.Point(538, 29);
+            this.tbPrice.Name = "tbPrice";
+            this.tbPrice.Size = new System.Drawing.Size(131, 20);
+            this.tbPrice.TabIndex = 3;
+            this.tbPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // cmbCurrency
             // 
@@ -379,6 +357,24 @@
             this.tbProductName.Size = new System.Drawing.Size(301, 20);
             this.tbProductName.TabIndex = 2;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(444, 32);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(57, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Ürün Fiyatı";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(444, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Döviz Tipi";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -412,22 +408,19 @@
             // dtChelner
             // 
             this.dtChelner.AllowUserToAddRows = false;
+            this.dtChelner.AutoGenerateColumns = global::Restaurant.Properties.Settings.Default.dgvAutoGeneretaFalse;
             this.dtChelner.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtChelner.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ChelnerName});
+            this.dtChelner.DataBindings.Add(new System.Windows.Forms.Binding("AutoGenerateColumns", global::Restaurant.Properties.Settings.Default, "dgvAutoGeneretaFalse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtChelner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtChelner.Location = new System.Drawing.Point(3, 121);
             this.dtChelner.Name = "dtChelner";
+            this.dtChelner.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dtChelner.Size = new System.Drawing.Size(864, 258);
             this.dtChelner.TabIndex = 3;
-            // 
-            // ChelnerName
-            // 
-            this.ChelnerName.FillWeight = 300F;
-            this.ChelnerName.HeaderText = "Garson Adı";
-            this.ChelnerName.Name = "ChelnerName";
-            this.ChelnerName.ReadOnly = true;
-            this.ChelnerName.Width = 300;
+            this.dtChelner.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtChelner_CellEndEdit);
+            this.dtChelner.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtChelner_KeyDown);
             // 
             // groupBox5
             // 
@@ -450,6 +443,7 @@
             this.btnSaveChelner.TabIndex = 2;
             this.btnSaveChelner.Text = "Kaydet";
             this.btnSaveChelner.UseVisualStyleBackColor = true;
+            this.btnSaveChelner.Click += new System.EventHandler(this.btnSaveChelner_Click);
             // 
             // tbChelnerName
             // 
@@ -467,32 +461,59 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Garson Adı";
             // 
-            // label6
+            // ProductGroupNameForProduct
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(444, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Döviz Tipi";
+            this.ProductGroupNameForProduct.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ProductGroupNameForProduct.DataPropertyName = "ProductGroupNameForProduct";
+            this.ProductGroupNameForProduct.FillWeight = 200F;
+            this.ProductGroupNameForProduct.HeaderText = "Ürün Grubu Adı";
+            this.ProductGroupNameForProduct.Name = "ProductGroupNameForProduct";
+            this.ProductGroupNameForProduct.ReadOnly = true;
             // 
-            // label7
+            // ProductName
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(444, 32);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Ürün Fiyatı";
+            this.ProductName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ProductName.DataPropertyName = "ProductName";
+            this.ProductName.HeaderText = "Ürün Adı";
+            this.ProductName.Name = "ProductName";
             // 
-            // tbPrice
+            // SalesPrice
             // 
-            this.tbPrice.DecimalPlaces = 2;
-            this.tbPrice.Location = new System.Drawing.Point(538, 29);
-            this.tbPrice.Name = "tbPrice";
-            this.tbPrice.Size = new System.Drawing.Size(131, 20);
-            this.tbPrice.TabIndex = 3;
-            this.tbPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SalesPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SalesPrice.DataPropertyName = "SalesPrice";
+            this.SalesPrice.HeaderText = "Ürün Fiyatı";
+            this.SalesPrice.Name = "SalesPrice";
+            // 
+            // CurrencyType
+            // 
+            this.CurrencyType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CurrencyType.DataPropertyName = "CurrencyType";
+            this.CurrencyType.HeaderText = "Döviz Tipi";
+            this.CurrencyType.Name = "CurrencyType";
+            this.CurrencyType.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "Id";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // TableName
+            // 
+            this.TableName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TableName.DataPropertyName = "TableName";
+            this.TableName.HeaderText = "Masa Adı";
+            this.TableName.Name = "TableName";
+            // 
+            // ChelnerName
+            // 
+            this.ChelnerName.DataPropertyName = "ChelnerName";
+            this.ChelnerName.FillWeight = 300F;
+            this.ChelnerName.HeaderText = "Garson Adı";
+            this.ChelnerName.Name = "ChelnerName";
+            this.ChelnerName.Width = 300;
             // 
             // CreateForm
             // 
@@ -500,6 +521,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 408);
             this.Controls.Add(this.tb1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateForm";
             this.Text = "Kayıt Formu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -517,11 +539,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtProduct)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbPrice)).EndInit();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtChelner)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbPrice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -551,7 +573,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cmbCurrency;
         private System.Windows.Forms.DataGridView dtChelner;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChelnerName;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button btnSaveChelner;
         private System.Windows.Forms.TextBox tbChelnerName;
@@ -559,13 +580,15 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dtTables;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductGroupName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
+        private System.Windows.Forms.NumericUpDown tbPrice;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductGroupNameForProduct;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn CurrencyType;
-        private System.Windows.Forms.NumericUpDown tbPrice;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TableName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChelnerName;
     }
 }

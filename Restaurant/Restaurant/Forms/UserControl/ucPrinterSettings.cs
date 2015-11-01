@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Restaurant.DataClass;
 using Restaurant.Properties;
 
 namespace Restaurant.Forms.UserControl
@@ -20,17 +21,19 @@ namespace Restaurant.Forms.UserControl
                 cbGeneral.Items.Add(printer);
                 cbKitchen.Items.Add(printer);
             }
-            if (!string.IsNullOrEmpty(Settings.Default.GeneralPrinter))
-                cbGeneral.SelectedIndex = cbGeneral.Items.IndexOf(Settings.Default.GeneralPrinter);
-            if (!string.IsNullOrEmpty(Settings.Default.KitchenPrinter))
-                cbKitchen.SelectedIndex = cbKitchen.Items.IndexOf(Settings.Default.KitchenPrinter);
+            var vPrinters = MySettings.GetListPrinter();
+            if (vPrinters.Count == 0) return;
+
+            if (!string.IsNullOrEmpty(vPrinters[0].Value))
+                cbGeneral.SelectedIndex = cbGeneral.Items.IndexOf(vPrinters[0].Value);
+            if (!string.IsNullOrEmpty(vPrinters[1].Value))
+                cbKitchen.SelectedIndex = cbKitchen.Items.IndexOf(vPrinters[1].Value);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Settings.Default.GeneralPrinter = cbGeneral.SelectedItem.ToString();
-            Settings.Default.KitchenPrinter = cbKitchen.SelectedItem.ToString();
-            Settings.Default.Save();
+            MySettings.AddPrinter("1", cbGeneral.SelectedItem.ToString());
+            MySettings.AddPrinter("2", cbKitchen.SelectedItem.ToString());
             MessageBox.Show("Yazıcı Ayarları Yapıldı.", "Yazıcı Ayarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Parent.Hide();
         }

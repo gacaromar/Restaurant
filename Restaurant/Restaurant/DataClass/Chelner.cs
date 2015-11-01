@@ -39,6 +39,22 @@ namespace Restaurant.DataClass
 
 
 
+
+        public static int Insert(string pName)
+        {
+            var dt = DAL.InsertChelner(pName);
+            return dt.Rows.Count;
+        }
+
+        public void Update()
+        {
+            DAL.UpdateChelner(Id, ChelnerName);
+        }
+
+        public void Delete()
+        {
+            DAL.DeleteChelner(Id);
+        }
     }
 
 }
@@ -55,6 +71,43 @@ public partial class DataAccessLayer
         catch (Exception ex)
         {
             return new DataTable();
+        }
+    }
+
+    public DataTable InsertChelner(string pName)
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure, SpNameCollection.InsertChelner,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pName));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
+
+    public void UpdateChelner(int pId, string pChelnerName)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.UpdateChelner,
+                            MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId, pChelnerName));
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+    public void DeleteChelner(int pId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure, SpNameCollection.DeleteChelner,
+                            MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(), pId));
+        }
+        catch (Exception ex)
+        {
         }
     }
 }

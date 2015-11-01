@@ -21,7 +21,7 @@ namespace Restaurant.DataClass
 
         public string ProductNameSalesPrice
         {
-            get { return ProductName + "\n(" + SalesPrice.ToString("N2") +" TL)"; }
+            get { return ProductName + "\n(" + SalesPrice.ToString("N2") + " TL)"; }
         }
 
         public string CurrencyType { get; set; }
@@ -86,6 +86,22 @@ namespace Restaurant.DataClass
         }
 
         #endregion
+
+        public static int InsertProduct(int pProductGroupId, string pName, double pPrice, string pCurrency)
+        {
+            var dt = DAL.InsertProduct(pProductGroupId, pName, pPrice, pCurrency);
+            return dt.Rows.Count;
+        }
+
+        public void Update()
+        {
+            DAL.UpdateProduct(Id, ProductName, SalesPrice);
+        }
+
+        public void Delete()
+        {
+            DAL.DeleteProduct(Id);
+        }
     }
 
 }
@@ -115,6 +131,49 @@ public partial class DataAccessLayer
         catch (Exception ex)
         {
             return new DataTable();
+        }
+    }
+
+    public DataTable InsertProduct(int pProductGroupId, string pName, double pPrice, string pCurrency)
+    {
+        try
+        {
+            return UtilMySqlHelper.ExecuteDataTable(conString, CommandType.StoredProcedure,
+                SpNameCollection.InsertProduct,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),
+                    pProductGroupId, pName, pPrice, pCurrency));
+        }
+        catch (Exception ex)
+        {
+            return new DataTable();
+        }
+    }
+
+    public void UpdateProduct(int pId, string pProductName, double pPrice)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure,
+                SpNameCollection.UpdateProduct,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),
+                    pId, pProductName, pPrice));
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+
+    public void DeleteProduct(int pId)
+    {
+        try
+        {
+            UtilMySqlHelper.ExecuteNonQuery(conString, CommandType.StoredProcedure,
+                SpNameCollection.DeleteProduct,
+                MySQLParameterGeneratorEx.GenerateParam(((MethodInfo)MethodBase.GetCurrentMethod()).GetParameters(),
+                    pId));
+        }
+        catch (Exception ex)
+        {
         }
     }
 }
