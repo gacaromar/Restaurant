@@ -218,6 +218,7 @@
             this.ProductName.DataPropertyName = "Product.ProductName";
             this.ProductName.HeaderText = "Ürün";
             this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
             // 
             // Price
             // 
@@ -245,6 +246,7 @@
             this.Sil.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Sil.Text = "Sil";
             this.Sil.ToolTipText = "Sil";
+            this.Sil.UseColumnTextForButtonValue = true;
             // 
             // ucSaleSlip
             // 

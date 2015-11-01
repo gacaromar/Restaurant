@@ -278,7 +278,7 @@ namespace Restaurant.Forms
         private void dtProduct_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var a = dtProduct.Rows[e.RowIndex].DataBoundItem as Product;
-            string value = dtProduct.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            string value = dtProduct.Rows[e.RowIndex].Cells["ProductName"].Value.ToString();
             double price = Convert.ToDouble(dtProduct.Rows[e.RowIndex].Cells["SalesPrice"].Value.ToString());
             int Id = a.Id;
             //int Id = Convert.ToInt32(dtProduct.Rows[e.RowIndex].Cells[0].Value);
@@ -292,7 +292,7 @@ namespace Restaurant.Forms
                     SalesPrice = price
                 };
                 t.Update();
-                MessageBox.Show("Masa güncelleme işleminiz gerçekleştirilmiştir.", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ürün güncelleme işleminiz gerçekleştirilmiştir.", "Bilgilendirme", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

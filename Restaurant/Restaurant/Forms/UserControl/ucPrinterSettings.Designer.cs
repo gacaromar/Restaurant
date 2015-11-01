@@ -33,6 +33,7 @@
             this.cbKitchen = new System.Windows.Forms.ComboBox();
             this.cbGeneral = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +59,7 @@
             this.cbKitchen.FormattingEnabled = true;
             this.cbKitchen.Location = new System.Drawing.Point(115, 4);
             this.cbKitchen.Name = "cbKitchen";
-            this.cbKitchen.Size = new System.Drawing.Size(235, 22);
+            this.cbKitchen.Size = new System.Drawing.Size(161, 22);
             this.cbKitchen.TabIndex = 2;
             // 
             // cbGeneral
@@ -66,13 +67,13 @@
             this.cbGeneral.FormattingEnabled = true;
             this.cbGeneral.Location = new System.Drawing.Point(115, 37);
             this.cbGeneral.Name = "cbGeneral";
-            this.cbGeneral.Size = new System.Drawing.Size(235, 22);
+            this.cbGeneral.Size = new System.Drawing.Size(161, 22);
             this.cbGeneral.TabIndex = 3;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Verdana", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.Location = new System.Drawing.Point(70, 75);
+            this.button1.Location = new System.Drawing.Point(70, 70);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 41);
             this.button1.TabIndex = 4;
@@ -80,10 +81,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Maroon;
+            this.btnClose.Location = new System.Drawing.Point(289, -2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 23);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // ucPrinterSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.MistyRose;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cbGeneral);
             this.Controls.Add(this.cbKitchen);
@@ -91,7 +107,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Name = "ucPrinterSettings";
-            this.Size = new System.Drawing.Size(355, 119);
+            this.Size = new System.Drawing.Size(317, 115);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +120,6 @@
         private System.Windows.Forms.ComboBox cbKitchen;
         private System.Windows.Forms.ComboBox cbGeneral;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClose;
     }
 }

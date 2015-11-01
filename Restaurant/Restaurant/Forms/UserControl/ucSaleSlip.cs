@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Restaurant.Properties;
+using Telerik.Reporting.Processing;
 using Color = System.Drawing.Color;
 using Table = Restaurant.DataClass.Table;
 
@@ -48,6 +49,7 @@ namespace Restaurant.Forms.UserControl
             cmbTables.ValueMember = "Id";
             cmbTables.DisplayMember = "TableName";
             tables = Table.GetAllTables();
+            tables.Insert(0, new Table { Id = -1, TableName = "Seçiniz" });
             cmbTables.DataSource = tables;
             if (pTable != null)
             {
@@ -91,13 +93,13 @@ namespace Restaurant.Forms.UserControl
         private void ProductClick(object sender, EventArgs e)
         {
             if (sender == null) return;
-            //if (gChelner == null || gChelner.Id == 0)
-            //{
-            //    MessageBox.Show("Lütfen Adisyon için Garson Seçiniz", "Garson Seçimi", MessageBoxButtons.OK,
-            //        MessageBoxIcon.Error);
-            //    return;
+            if (cmbTables.SelectedIndex == 0)
+            {
+                MessageBox.Show("Lütfen Adisyon için Masa Seçiniz", "Masa Seçimi", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
 
-            //}
+            }
             var ucQty = new ucQuantity();
             var frm = GlobalHelper.OpenShowForm(ucQty, FormBorderStyle.None, FormStartPosition.CenterScreen);
             gQuantity = Convert.ToDouble(ucQty.txtQty.Value);
@@ -200,7 +202,7 @@ namespace Restaurant.Forms.UserControl
             DialogResult dialogResult = MessageBox.Show("Adisyon yazdırmak istermisiniz ? ", "Adisyon", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == System.Windows.Forms.DialogResult.Yes)
             {
-                // Adisyon yazdır
+                btnSlipPrint_Click(sender, e);
                 SaveOrder();
             }
             else
@@ -301,9 +303,10 @@ namespace Restaurant.Forms.UserControl
 
         private void btnSlipPrint_Click(object sender, EventArgs e)
         {
+
             string sss = DateTime.Now.Millisecond + "Doc1.pdf";
             string filename = AppDomain.CurrentDomain.BaseDirectory + sss;
-            Document document = new Document(new iTextSharp.text.Rectangle(155f, 219f), 1f, 1f, 2f, 1f);
+            Document document = new Document(new iTextSharp.text.Rectangle(155f, 219f), 1f, 1f, 1f, 1f);
 
             PdfWriter.GetInstance(document, new FileStream(filename, FileMode.Create));
 
@@ -319,14 +322,14 @@ namespace Restaurant.Forms.UserControl
             tblHeader.DefaultCell.BorderWidth = 0;
             tblHeader.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
             tblHeader.SetWidths(new[] { 45, 100 });
-            tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 14), 0, 0);
-            tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 1, 0);
+            tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 10), 0, 0);
+            tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 8), 1, 0);
             tblHeader.AddCell(CellCreate(":" + gTable.TableName, Element.ALIGN_LEFT, Element.ALIGN_CENTER), 1, 1);
-            tblHeader.AddCell(CellCreate("Açılış", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 2, 0);
+            tblHeader.AddCell(CellCreate("Açılış", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 8), 2, 0);
             tblHeader.AddCell(
                 CellCreate(":" + gTable.RecordDate.ToString("dd.MM.yyyy hh:mm:ss"), Element.ALIGN_LEFT, Element.ALIGN_CENTER),
                 2, 1);
-            tblHeader.AddCell(CellCreate("Adisyon No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 3, 0);
+            tblHeader.AddCell(CellCreate("Adisyon No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 8), 3, 0);
             tblHeader.AddCell(CellCreate(":" + gTable.Id.ToString(), Element.ALIGN_LEFT, Element.ALIGN_CENTER), 3, 1);
 
             #endregion
@@ -344,19 +347,19 @@ namespace Restaurant.Forms.UserControl
             aTableProduct.DefaultCell.BorderWidth = 0;
             aTableProduct.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
 
-            aTableProduct.AddCell(CellCreate("Ürün", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
-            aTableProduct.AddCell(CellCreate("Mik.", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
-            aTableProduct.AddCell(CellCreate("Fiyat", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
-            aTableProduct.AddCell(CellCreate("Tutar", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Ürün", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
+            aTableProduct.AddCell(CellCreate("Mik.", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
+            aTableProduct.AddCell(CellCreate("Fiyat", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
+            aTableProduct.AddCell(CellCreate("Tutar", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
 
             foreach (Basket t in vBasket)
             {
-                aTableProduct.AddCell(CellCreate(t.Product.ProductName, Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Product.ProductName, Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 6));
                 aTableProduct.AddCell(CellCreate(t.Quantity.ToString(CultureInfo.CurrentCulture), Element.ALIGN_LEFT,
-                    Element.ALIGN_CENTER, 1, 1));
+                    Element.ALIGN_CENTER, 1, 1, 6));
                 aTableProduct.AddCell(CellCreate(t.Product.SalesPrice.ToString("N2"), Element.ALIGN_LEFT,
-                    Element.ALIGN_CENTER, 1, 1));
-                aTableProduct.AddCell(CellCreate(t.Total.ToString("N2"), Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+                    Element.ALIGN_CENTER, 1, 1, 6));
+                aTableProduct.AddCell(CellCreate(t.Total.ToString("N2"), Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 6));
             }
 
             #endregion
@@ -373,11 +376,11 @@ namespace Restaurant.Forms.UserControl
             tblFooter.DefaultCell.BorderWidth = 0;
             tblFooter.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
             tblFooter.SetWidths(new[] { 100, 45 });
-            tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 0, 0);
-            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 0,
+            tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 8), 0, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 8), 0,
                 1);
-            tblFooter.AddCell(CellCreate("Genel Toplam", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 1, 0);
-            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 1,
+            tblFooter.AddCell(CellCreate("Genel Toplam", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 8), 1, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 8), 1,
                 1);
             tblFooter.AddCell(CellCreate("Afiyet Olsun", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 12), 2, 0);
 
@@ -394,6 +397,7 @@ namespace Restaurant.Forms.UserControl
             document.Add(aTableProduct);
             document.Add(headerPhrase);
             document.Add(tblFooter);
+
 
             document.Close();
             var vList = MySettings.GetListPrinter();
@@ -423,6 +427,9 @@ namespace Restaurant.Forms.UserControl
             //return;
 
             myPrinters.SetDefaultPrinter(vList[0].Value);
+
+            //ReportProcessor reportProcessor = new ReportProcessor();
+            //reportProcessor.PrintReport(new Report1(), new PrinterSettings());
             ProcessStartInfo info = new ProcessStartInfo();
             info.Verb = "print";
             info.FileName = filename;
@@ -468,14 +475,14 @@ namespace Restaurant.Forms.UserControl
             tblHeader.DefaultCell.BorderWidth = 0;
             tblHeader.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
             tblHeader.SetWidths(new[] { 45, 100 });
-            tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 14), 0, 0);
-            tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 1, 0);
+            tblHeader.AddCell(CellCreate("CAFE MOLA", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 10), 0, 0);
+            tblHeader.AddCell(CellCreate("Masa No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 8), 1, 0);
             tblHeader.AddCell(CellCreate(":" + gTable.TableName, Element.ALIGN_LEFT, Element.ALIGN_CENTER), 1, 1);
-            tblHeader.AddCell(CellCreate("Açılış", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 2, 0);
+            tblHeader.AddCell(CellCreate("Açılış", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 8), 2, 0);
             tblHeader.AddCell(
                 CellCreate(":" + gTable.RecordDate.ToString("dd.MM.yyyy hh:mm:ss"), Element.ALIGN_LEFT, Element.ALIGN_CENTER),
                 2, 1);
-            tblHeader.AddCell(CellCreate("Adisyon No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 11), 3, 0);
+            tblHeader.AddCell(CellCreate("Adisyon No", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 0, 8), 3, 0);
             tblHeader.AddCell(CellCreate(":" + gTable.Id.ToString(), Element.ALIGN_LEFT, Element.ALIGN_CENTER), 3, 1);
 
             #endregion
@@ -493,19 +500,19 @@ namespace Restaurant.Forms.UserControl
             aTableProduct.DefaultCell.BorderWidth = 0;
             aTableProduct.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
 
-            aTableProduct.AddCell(CellCreate("Ürün", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
-            aTableProduct.AddCell(CellCreate("Mik.", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
-            aTableProduct.AddCell(CellCreate("Fiyat", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
-            aTableProduct.AddCell(CellCreate("Tutar", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 11));
+            aTableProduct.AddCell(CellCreate("Ürün", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
+            aTableProduct.AddCell(CellCreate("Mik.", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
+            aTableProduct.AddCell(CellCreate("Fiyat", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
+            aTableProduct.AddCell(CellCreate("Tutar", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 2, 8));
 
             foreach (Basket t in vBasket)
             {
-                aTableProduct.AddCell(CellCreate(t.Product.ProductName, Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+                aTableProduct.AddCell(CellCreate(t.Product.ProductName, Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 6));
                 aTableProduct.AddCell(CellCreate(t.Quantity.ToString(CultureInfo.CurrentCulture), Element.ALIGN_LEFT,
-                    Element.ALIGN_CENTER, 1, 1));
+                    Element.ALIGN_CENTER, 1, 1, 6));
                 aTableProduct.AddCell(CellCreate(t.Product.SalesPrice.ToString("N2"), Element.ALIGN_LEFT,
-                    Element.ALIGN_CENTER, 1, 1));
-                aTableProduct.AddCell(CellCreate(t.Total.ToString("N2"), Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1));
+                    Element.ALIGN_CENTER, 1, 1, 6));
+                aTableProduct.AddCell(CellCreate(t.Total.ToString("N2"), Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 6));
             }
 
             #endregion
@@ -522,11 +529,11 @@ namespace Restaurant.Forms.UserControl
             tblFooter.DefaultCell.BorderWidth = 0;
             tblFooter.DefaultCell.BorderColor = iTextSharp.text.Color.WHITE;
             tblFooter.SetWidths(new[] { 100, 45 });
-            tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 0, 0);
-            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 0,
+            tblFooter.AddCell(CellCreate("Ara", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 8), 0, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 8), 0,
                 1);
-            tblFooter.AddCell(CellCreate("Genel Toplam", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 11), 1, 0);
-            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 11), 1,
+            tblFooter.AddCell(CellCreate("Genel Toplam", Element.ALIGN_LEFT, Element.ALIGN_CENTER, 1, 1, 8), 1, 0);
+            tblFooter.AddCell(CellCreate(total.ToString("N2"), Element.ALIGN_RIGHT, Element.ALIGN_CENTER, 1, 1, 8), 1,
                 1);
             tblFooter.AddCell(CellCreate("Afiyet Olsun", Element.ALIGN_CENTER, Element.ALIGN_CENTER, 2, 1, 12), 2, 0);
 
@@ -569,7 +576,7 @@ namespace Restaurant.Forms.UserControl
         private Cell CellCreate(string text, int vAlignment = 1, int hAlignment = 0, int colspan = 1, int type = 0, int font = 10)
         {
             BaseFont trArial = BaseFont.CreateFont(@"C:\WINDOWS\Fonts\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font newFont = new iTextSharp.text.Font(trArial, 10, iTextSharp.text.Font.NORMAL);
+            iTextSharp.text.Font newFont = new iTextSharp.text.Font(trArial, font, iTextSharp.text.Font.NORMAL);
 
             if (type == 0) newFont = new iTextSharp.text.Font(trArial, font, iTextSharp.text.Font.NORMAL);
             else newFont = new iTextSharp.text.Font(trArial, font, iTextSharp.text.Font.BOLD);

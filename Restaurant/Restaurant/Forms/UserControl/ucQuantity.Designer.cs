@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtQty = new System.Windows.Forms.NumericUpDown();
             this.txtDiscount = new System.Windows.Forms.NumericUpDown();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtQty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).BeginInit();
             this.SuspendLayout();
@@ -40,7 +41,7 @@
             // btnOk
             // 
             this.btnOk.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnOk.Location = new System.Drawing.Point(21, 48);
+            this.btnOk.Location = new System.Drawing.Point(21, 44);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(136, 25);
             this.btnOk.TabIndex = 3;
@@ -74,20 +75,10 @@
             this.txtQty.DecimalPlaces = 2;
             this.txtQty.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.txtQty.Location = new System.Drawing.Point(11, 20);
-            this.txtQty.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(67, 22);
             this.txtQty.TabIndex = 1;
             this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtQty.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             // 
             // txtDiscount
             // 
@@ -100,11 +91,25 @@
             this.txtDiscount.TabIndex = 5;
             this.txtDiscount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Maroon;
+            this.btnClose.Location = new System.Drawing.Point(165, -3);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(25, 23);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.Text = "X";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // ucQuantity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtDiscount);
             this.Controls.Add(this.txtQty);
             this.Controls.Add(this.label2);
@@ -112,7 +117,7 @@
             this.Controls.Add(this.btnOk);
             this.Font = new System.Drawing.Font("Verdana", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Name = "ucQuantity";
-            this.Size = new System.Drawing.Size(196, 76);
+            this.Size = new System.Drawing.Size(192, 72);
             ((System.ComponentModel.ISupportInitialize)(this.txtQty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDiscount)).EndInit();
             this.ResumeLayout(false);
@@ -127,5 +132,6 @@
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.NumericUpDown txtQty;
         public System.Windows.Forms.NumericUpDown txtDiscount;
+        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -37,5 +37,10 @@ namespace Restaurant.Forms.UserControl
             MessageBox.Show("Yazıcı Ayarları Yapıldı.", "Yazıcı Ayarı", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Parent.Hide();
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Parent.Hide();
+        }
     }
 }

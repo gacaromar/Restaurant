@@ -7,13 +7,17 @@ namespace Restaurant.Forms.UserControl
         public ucQuantity()
         {
             InitializeComponent();
-           
         }
 
         private void btnOk_Click(object sender, System.EventArgs e)
         {
             Parent.Hide();
         }
-        
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Parent.Hide();
+        }
+
     }
 }

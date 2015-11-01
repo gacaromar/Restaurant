@@ -23,7 +23,7 @@ namespace Restaurant.Forms.UserControl
                 tbl.lblTableName.Text = pSource[i].TableName;
                 tbl.pbPicture.Image = pSource[i].Active ? Properties.Resources.ActiveTable : Properties.Resources.PassiveTable;
                 tbl.pbPicture.Click += tblClick;
-                if (i % 10 == 0)
+                if (i % 8 == 0)
                 {
                     j = 0; row++;
                 }
